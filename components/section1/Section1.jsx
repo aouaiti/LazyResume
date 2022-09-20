@@ -23,7 +23,7 @@ const animateDI = {
 };
 
 function Section1() {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   const section1Ref = useRef(null);
 
   return (

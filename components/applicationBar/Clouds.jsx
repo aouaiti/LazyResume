@@ -46,7 +46,7 @@ const child = {
 };
 
 function Clouds() {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   return (
     <>
       <motion.div

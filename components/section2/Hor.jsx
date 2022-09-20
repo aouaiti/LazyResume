@@ -1,3 +1,5 @@
+import styles from "./hor.module.scss";
+import { useCallback, useState, useEffect, useRef, forwardRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -6,10 +8,10 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import { useCallback, useState, useEffect, useRef, forwardRef } from "react";
 import ResizeObserver from "resize-observer-polyfill";
-
-import styles from "./hor.module.scss";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { currentPart } from "../../Features/globalUiVars/section2";
 
 const cont = {
   init: {},
@@ -57,7 +59,11 @@ const Elem = forwardRef((props, ref) => (
   </motion.div>
 ));
 
-const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
+const Contained = ({ numba }) => {
+  /////////////////////////////////////// redux stuff
+  const section2part = useSelector((state) => state.section2.part);
+  const dispatchPart = useDispatch();
+  /////////////////////////////////////// end redux stuff
   // const arr = [3, 2, 1];
   const container = useRef(null);
   const resumeRefs = useRef([]);
@@ -120,11 +126,11 @@ const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
   }, [filler]);
   useEffect(() => {
     // console.log("Element is in view: ", isInView);
-    if (isInView && filler) setDisplayUI(displayUI + 1);
+    if (isInView && filler) dispatchPart(currentPart(1));
   }, [isInView]);
   useEffect(() => {
     // console.log("Element is in view: ", isInViewInit);
-    if (isInViewInit && filler) setDisplayUI(displayUI - 1);
+    if (isInViewInit && filler) dispatchPart(currentPart(-1));
     // console.log(filler);
   }, [isInViewInit]);
   ////////////////////////////////////// Horizontal scroll logic

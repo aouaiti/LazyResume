@@ -3,7 +3,7 @@ import styles from "./moon.module.scss";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { toggleMode } from "../../Features/globalUiVars/globalUiSlice";
+import { toggleMode } from "../../Features/globalUiVars/theme";
 
 const animation = {
   day: {
@@ -23,7 +23,7 @@ const animation = {
 };
 
 export default function Moon({ isDay, setIsDay }) {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   const dispatch = useDispatch();
   return (
     <motion.div

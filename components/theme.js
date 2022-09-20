@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { useSelector } from "react-redux";
 
 function ThemeWrapper({ children }) {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   const myTheme = createTheme({
     palette: {
       mode: themeMode,

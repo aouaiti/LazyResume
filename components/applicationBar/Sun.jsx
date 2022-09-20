@@ -3,7 +3,7 @@ import styles from "./sun.module.css";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { toggleMode } from "../../Features/globalUiVars/globalUiSlice";
+import { toggleMode } from "../../Features/globalUiVars/theme";
 
 const animation = {
   night: {
@@ -21,7 +21,7 @@ const animation = {
 };
 
 export default function Sun({ isDay, setIsDay }) {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   const dispatch = useDispatch();
   return (
     <motion.div

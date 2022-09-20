@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const Parts = ({ isDay }) => {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   const StyledStars = styled(motion.div)`
     background-color: red;
     width: 200px;

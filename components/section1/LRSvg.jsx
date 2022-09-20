@@ -18,7 +18,7 @@ const animatePath = {
 };
 
 const SVGComponent = () => {
-  const themeMode = useSelector((state) => state.globalUiValues.mode);
+  const themeMode = useSelector((state) => state.theme.mode);
   const L = (props) => {
     return (
       <svg

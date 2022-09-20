@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import globalUiValues from "./globalUiVars/globalUiSlice";
+import theme from "./globalUiVars/theme";
+import section2 from "./globalUiVars/section2";
 
 const store = configureStore({
   reducer: {
-    globalUiValues,
+    theme,
+    section2,
   },
 });
 

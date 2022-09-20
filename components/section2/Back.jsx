@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 import Hor from "./Hor";
 import ScrollingText from "./ScrollingText";
 import Globe from "./Globe";
@@ -43,14 +44,11 @@ const animation = {
   },
 };
 
-export default function Back({
-  setDisplayUI,
-  displayUI,
-  lowerBackg,
-  higherBackg,
-  trigger,
-  numba,
-}) {
+export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
+  const section2part = useSelector((state) => state.section2.part);
+  // const lowerBG = useSelector((state) => state.section2.backgroundPalette);
+  // console.log(lowerBG);
+
   const lowerBackControls = useAnimation();
   const higherBackControls = useAnimation();
   const [toggle, setToggle] = useState(true);
@@ -58,7 +56,7 @@ export default function Back({
   const lowerRef = useRef(null);
 
   useEffect(() => {
-    if (displayUI === trigger) {
+    if (section2part === trigger) {
       (async () => {
         await lowerBackControls.start("anim4");
         await lowerBackControls.start("anim2");
@@ -70,11 +68,11 @@ export default function Back({
         await higherBackControls.start("anim2");
       })();
     }
-  }, [displayUI]);
+  }, [section2part]);
 
   return (
     <AnimatePresence>
-      {displayUI === trigger && (
+      {section2part === trigger && (
         <>
           <div
             style={{
@@ -116,12 +114,7 @@ export default function Back({
               }}
             />
           </div>
-          <Hor
-            displayUI={displayUI}
-            setDisplayUI={setDisplayUI}
-            lowerRef={lowerRef}
-            numba={numba}
-          />
+          <Hor numba={numba} />
           <ScrollingText lowerBackg={lowerBackg} higherBackg={higherBackg} />
           <Globe />
         </>

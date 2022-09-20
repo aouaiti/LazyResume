@@ -4,15 +4,18 @@ const initialState = {
   mode: "dark",
 };
 
-const globalUiValues = createSlice({
-  name: "globalUiValues",
+const theme = createSlice({
+  name: "theme",
   initialState,
   reducers: {
     toggleMode: (state) => {
       state.mode === "dark" ? (state.mode = "light") : (state.mode = "dark");
     },
+    // section2part: (state, action) => {
+    //   state.section2part = state.section2part + action.payload;
+    // },
   },
 });
 
-export default globalUiValues.reducer;
-export const { toggleMode } = globalUiValues.actions;
+export default theme.reducer;
+export const { toggleMode } = theme.actions;
