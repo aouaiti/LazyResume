@@ -6,14 +6,7 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import {
-  useCallback,
-  useState,
-  useEffect,
-  useRef,
-  useLayoutEffect,
-  forwardRef,
-} from "react";
+import { useCallback, useState, useEffect, useRef, forwardRef } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 
 import styles from "./hor.module.scss";
@@ -77,6 +70,14 @@ const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
   const [[rotateX, rotateY, scaleX, scaleY], setMovementAnimation] = useState([
     0, 0, 1, 1,
   ]);
+
+  const xPos = useMotionValue(0);
+  const yPos = useMotionValue(0);
+  const xSpring = useSpring(xPos, { damping: 25, stiffness: 700 });
+  const ySpring = useSpring(yPos, { damping: 25, stiffness: 700 });
+  xPos.set(mousePosition.x);
+  yPos.set(mousePosition.y);
+
   const onMouseMove = (e) => {
     if (hoveringResume) {
       setMovementAnimation([0, 0, 1, 1]);
@@ -113,15 +114,15 @@ const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
   });
   const isInViewInit = useInView(triggerInit);
   const [filler, setFiller] = useState(false);
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => setFiller(true), 1000);
     // setFiller(false);
   }, [filler]);
-  useLayoutEffect(() => {
+  useEffect(() => {
     // console.log("Element is in view: ", isInView);
     if (isInView && filler) setDisplayUI(displayUI + 1);
   }, [isInView]);
-  useLayoutEffect(() => {
+  useEffect(() => {
     // console.log("Element is in view: ", isInViewInit);
     if (isInViewInit && filler) setDisplayUI(displayUI - 1);
     // console.log(filler);
@@ -136,7 +137,7 @@ const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => onResize(entries));
     resizeObserver.observe(ghost.current);
     return () => resizeObserver.disconnect();
@@ -160,7 +161,7 @@ const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
   );
   const physics = { damping: 15, mass: 0.27, stiffness: 35 };
   const spring = useSpring(transform, physics);
-  useLayoutEffect(() => {
+  useEffect(() => {
     container && setScrollWidth(container.current.scrollWidth);
     window.scrollTo({
       top: 0,
@@ -217,8 +218,8 @@ const Contained = ({ lowerRef, numba, setDisplayUI, displayUI }) => {
             hoveringResume ? styles[hoveringResume] : ""
           }`}
           style={{
-            left: mousePosition.x,
-            top: mousePosition.y,
+            left: xSpring,
+            top: ySpring,
           }}
           animate={{
             translateX: hoveringResume ? -30 : -16,
