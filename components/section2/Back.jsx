@@ -46,8 +46,7 @@ const animation = {
 
 export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
   const section2part = useSelector((state) => state.section2.part);
-  // const lowerBG = useSelector((state) => state.section2.backgroundPalette);
-  // console.log(lowerBG);
+  const BGColor = useSelector((state) => state.section2.backgroundPalette);
 
   const lowerBackControls = useAnimation();
   const higherBackControls = useAnimation();
@@ -93,7 +92,7 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
                 bottom: "0",
                 width: "100vw",
                 height: "100vh",
-                background: lowerBackg,
+                background: BGColor[1],
                 clipPath: "polygon(0 100%, 100% 100%, 100% 80%, 0 20%)",
               }}
             />
@@ -109,7 +108,7 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
                 bottom: "0",
                 width: "100vw",
                 height: "100vh",
-                background: higherBackg,
+                background: BGColor[0],
                 clipPath: "polygon(0 0%, 100% 0%, 100% 80%, 0% 20%)",
               }}
             />

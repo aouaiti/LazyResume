@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import store from "../store";
 
 const initialState = {
   mode: "dark",
