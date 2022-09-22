@@ -47,7 +47,7 @@ function Section1() {
         style={{
           position: "absolute",
           width: "100%",
-          height: "100vh",
+          height: "100%",
         }}
         // variants={animateDI}
         // initial="hide"
@@ -66,7 +66,7 @@ function Section1() {
         style={{
           position: "absolute",
           width: "100%",
-          height: "100vh",
+          height: "100%",
         }}
         variants={animateDI}
         initial="initial"

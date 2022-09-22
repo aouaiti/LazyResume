@@ -4,20 +4,22 @@ import SideBar from "../components/applicationBar/SideBar";
 import Section1 from "../components/section1/Section1.jsx";
 import LRSvg from "../components/section1/LRSvg";
 import Section2 from "../components/section2/Section2";
+import ScrollTrigger from "../components/trigger/ScrollTrigger";
 
 export default function Home() {
   return (
-    <>
+    <div id="main">
       <Head>
         <title>Lazy Resume</title>
         <meta name="description" content="The Lazy Resume Maker" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ScrollTrigger />
       <ApplicationBar />
       <SideBar />
       <Section1 />
       <LRSvg />
       <Section2 />
-    </>
+    </div>
   );
 }
