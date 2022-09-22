@@ -12,6 +12,8 @@ import ResizeObserver from "resize-observer-polyfill";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { currentPart } from "../../Features/globalUiVars/section2";
+import { Box } from "@mui/material";
+import Trigger from "../trigger/Trigger";
 
 const cont = {
   init: {},
@@ -34,7 +36,8 @@ const child = {
 };
 
 const Elem = forwardRef((props, ref) => (
-  <motion.div
+  <Box
+    component={motion.div}
     ref={ref}
     {...props}
     variants={child}
@@ -56,7 +59,7 @@ const Elem = forwardRef((props, ref) => (
       alt="test"
       src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/resume-template-design-4782fea09714c30bb0e9b926edd90a6f_screen.jpg?ts=1642634555"
     />
-  </motion.div>
+  </Box>
 ));
 
 const Contained = ({ numba }) => {
@@ -122,16 +125,12 @@ const Contained = ({ numba }) => {
   const [filler, setFiller] = useState(false);
   useEffect(() => {
     setTimeout(() => setFiller(true), 1000);
-    // setFiller(false);
   }, [filler]);
   useEffect(() => {
-    // console.log("Element is in view: ", isInView);
     if (isInView && filler) dispatchPart(currentPart(1));
   }, [isInView]);
   useEffect(() => {
-    // console.log("Element is in view: ", isInViewInit);
     if (isInViewInit && filler) dispatchPart(currentPart(-1));
-    // console.log(filler);
   }, [isInViewInit]);
   ////////////////////////////////////// Horizontal scroll logic
   ///////Affect the section width to height and translate the elem on X axis
@@ -177,7 +176,8 @@ const Contained = ({ numba }) => {
   /////////////////////////////////
   return (
     <>
-      <motion.div
+      <Box
+        component={motion.div}
         ref={container}
         variants={cont}
         initial="init"
@@ -203,23 +203,24 @@ const Contained = ({ numba }) => {
           x: spring,
         }}
       >
-        <motion.p
+        <Trigger
           ref={triggerInit}
           variants={child}
           initial="init"
           animate="show"
           // viewport={{ root: lowerRef, once: false, amount: "all" }}
-          viewport={{ root: "app", once: false, amount: "all" }}
-          style={{
-            opacity: 0,
-            marginRight: "5vw",
-            background: "black",
-            width: "3rem",
-            height: "3rem",
-            borderRadius: "50%",
-          }}
+          viewport={{ root: "app", once: true, amount: "all" }}
+          // style={{
+          //   opacity: 0,
+          //   marginRight: "5vw",
+          //   background: "black",
+          //   width: "3rem",
+          //   height: "3rem",
+          //   borderRadius: "50%",
+          // }}
         />
-        <motion.div
+        <Box
+          component={motion.div}
           className={`${styles.cursor} ${
             hoveringResume ? styles[hoveringResume] : ""
           }`}
@@ -250,29 +251,21 @@ const Contained = ({ numba }) => {
             }}
           />
         ))}
-        <motion.p
+        <Trigger
           ref={trigger}
           initial={{ opacity: 0, background: "red" }}
           whileInView={{ opacity: 0, background: "yellow" }}
-          // viewport={{ root: lowerRef, once: false, amount: "all" }}
-          viewport={{ root: "app", once: false, amount: "all" }}
-          style={{
-            marginLeft: "20vw",
-            background: "black",
-            width: "3rem",
-            height: "3rem",
-            borderRadius: "50%",
-          }}
+          viewport={{ root: "app", once: true, amount: "all" }}
         />
-      </motion.div>
-      <div
+      </Box>
+      <Box
         ref={ghost}
         style={{
           position: "absolute",
           width: "10vw",
           height: scrollWidth,
         }}
-      ></div>
+      ></Box>
     </>
   );
 };

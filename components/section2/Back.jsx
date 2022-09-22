@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Hor from "./Hor";
 import ScrollingText from "./ScrollingText";
 import Globe from "./Globe";
+import { Box } from "@mui/material";
 
 const animation = {
   anim1: {
@@ -73,14 +74,15 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
     <AnimatePresence>
       {section2part === trigger && (
         <>
-          <div
+          <Box
             style={{
               width: "100vw",
               height: "100vh",
               position: "fixed",
             }}
           >
-            <motion.div
+            <Box
+              component={motion.div}
               className="lowerRef"
               // ref={lowerRef}
               variants={animation}
@@ -96,7 +98,8 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
                 clipPath: "polygon(0 100%, 100% 100%, 100% 80%, 0 20%)",
               }}
             />
-            <motion.div
+            <Box
+              component={motion.div}
               className="HigherRef"
               // ref={lowerRef}
               variants={animation}
@@ -112,9 +115,9 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
                 clipPath: "polygon(0 0%, 100% 0%, 100% 80%, 0% 20%)",
               }}
             />
-          </div>
-          <Hor numba={numba} />
-          <ScrollingText lowerBackg={lowerBackg} higherBackg={higherBackg} />
+          </Box>
+          <Hor numba={numba} /> */}
+          <ScrollingText />
           <Globe />
         </>
       )}

@@ -1,8 +1,10 @@
-import { useRef, memo } from "react";
+import { useRef, useEffect, memo } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { triggerInView } from "../../Features/globalUiVars/triggers";
+import Trigger from "../trigger/Trigger";
 
 const animateDI = {
   initial: {
@@ -23,16 +25,25 @@ const animateDI = {
 };
 
 function Section1() {
+  const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.theme.mode);
   const section1Ref = useRef(null);
-
+  const section1Trigger = useRef();
+  const isInView = useInView(section1Trigger, {
+    // margin: "0px -40%",
+  });
+  useEffect(() => {
+    console.log(isInView);
+    isInView && dispatch(triggerInView("toSection2"));
+  }, [isInView]);
   return (
-    <div
+    <Box
       id="section-1"
       ref={section1Ref}
       style={{ position: "fixed", height: "100vh", width: "100vw" }}
     >
-      <motion.div
+      <Box
+        component={motion.div}
         style={{
           position: "absolute",
           width: "100%",
@@ -49,8 +60,9 @@ function Section1() {
           objectFit="cover"
           // fetchpriority="high"
         />
-      </motion.div>
-      <motion.div
+      </Box>
+      <Box
+        component={motion.div}
         style={{
           position: "absolute",
           width: "100%",
@@ -67,8 +79,9 @@ function Section1() {
           objectFit="cover"
           // fetchpriority="high"
         />
-      </motion.div>
-    </div>
+      </Box>
+      <Trigger ref={section1Trigger} />
+    </Box>
   );
 }
 export default memo(Section1);

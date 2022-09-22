@@ -2,6 +2,7 @@ import styles from "./Letter.module.scss";
 import { memo } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
 
 const animatePath = {
   initial: {
@@ -26,15 +27,15 @@ const SVGComponent = () => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 800.97 679.43"
         style={{
-          height: "100vh",
+          height: "100%",
           width: "60vw",
-          position: "absolute",
           top: "0%",
           left: "50%",
+          position: "absolute",
           width: "min(100vw, 300px)",
           transform: "translateX(-37%)",
-          height: "100vh",
           filter: "drop-shadow(-6px 6px 18px black)",
+          overflow: "hidden",
         }}
         {...props}
       >
@@ -50,7 +51,7 @@ const SVGComponent = () => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 800.97 679.43"
         style={{
-          height: "100vh",
+          height: "100%",
           width: "60vw",
           position: "absolute",
           top: "0%",
@@ -83,31 +84,11 @@ const SVGComponent = () => {
     );
   };
   return (
-    // <svg
-    //   id="Layer_1"
-    //   data-name="Layer 1"
-    //   xmlns="http://www.w3.org/2000/svg"
-    //   viewBox="0 0 680 679.43"
-    //   style={{
-    //     height: "100vh",
-    //     width: "60vw",
-    //     position: "absolute",
-    //     top: "-100%",
-    //     left: "50%",
-    //     width: "min(100vw, 300px)",
-    //     transform: "translateX(-43%)",
-    //     height: "100vh",
-    //   }}
-    //   {...props}
-    // >
-    <div>
-      <L
-        // style={{
-        //   filter: "drop-shadow(-6px 6px 18px rgba(0, 0, 0, 0.35))",
-        //   //   textShadow: "-6px 6px 18px rgba(0, 0, 0, 0.35)",
-        // }}
-        fill="#f44336"
-      />
+    <Box
+      component={motion.div}
+      style={{ position: "fixed", width: "100vw", height: "100vh" }}
+    >
+      <L fill="#f44336" />
       <R
         className={`${themeMode === "light" ? styles.still : styles.animate} ${
           themeMode === "light" ? "" : styles.flicker1
@@ -115,9 +96,7 @@ const SVGComponent = () => {
         fill={`${themeMode === "light" ? "#00000044" : "none"}`}
         strokeWidth="15px"
       />
-    </div>
-    //   {/* <LR /> */}
-    // </svg>
+    </Box>
   );
 };
 

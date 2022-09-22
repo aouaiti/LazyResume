@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Box } from "@mui/material";
 
 const animateParent = {
   exit: {
@@ -43,7 +44,7 @@ const animateMonuments = {
 };
 const animateElem = {
   initial: {
-    scale: 0.1,
+    scale: 0,
   },
   pimpIt: (x) => ({
     zIndex: 99,
@@ -59,7 +60,8 @@ const animateElem = {
 
 const Planet = () => {
   return (
-    <motion.div
+    <Box
+      component={motion.div}
       variants={animateEarth}
       initial="initial"
       animate="pimpIt"
@@ -72,20 +74,22 @@ const Planet = () => {
         height="200"
         // style={{ width: "200px", height: "200px" }}
       />
-    </motion.div>
+    </Box>
   );
 };
 const Monuments = () => {
   return (
-    <motion.div
+    <Box
+      component={motion.div}
       variants={animateMonuments}
       initial="initial"
       animate="pimpIt"
       style={{ display: "flex", alignItems: "flex-end" }}
     >
-      <motion.div
+      <Box
+        component={motion.div}
         variants={animateElem}
-        style={{ zIndex: "99", order: "2" }}
+        style={{ zIndex: "99", order: "2", margin: "0 -30px" }}
         custom={40}
       >
         <Image
@@ -95,8 +99,13 @@ const Monuments = () => {
           height="120"
           //   style={{ width: "100px", height: "120px" }}
         />
-      </motion.div>
-      <motion.div variants={animateElem} style={{ order: "1" }} custom={40}>
+      </Box>
+      <Box
+        component={motion.div}
+        variants={animateElem}
+        style={{ order: "1" }}
+        custom={40}
+      >
         <Image
           src={"/fr-baguette.png"}
           alt="earth"
@@ -108,9 +117,14 @@ const Monuments = () => {
             transform: "rotate(30deg)",
           }}
         />
-      </motion.div>
+      </Box>
 
-      <motion.div variants={animateElem} style={{ order: "3" }} custom={60}>
+      <Box
+        component={motion.div}
+        variants={animateElem}
+        style={{ order: "3" }}
+        custom={60}
+      >
         <Image
           src={"/fr-flag.png"}
           alt="earth"
@@ -120,16 +134,18 @@ const Monuments = () => {
             // width: "100px",
             // height: "100px",
             transform: "rotate(30deg)",
+            marginLeft: "20px",
           }}
         />
-      </motion.div>
-    </motion.div>
+      </Box>
+    </Box>
   );
 };
 
 export default function Globe() {
   return (
-    <motion.div
+    <Box
+      component={motion.div}
       variants={animateParent}
       exit="exit"
       style={{
@@ -142,6 +158,6 @@ export default function Globe() {
     >
       <Monuments />
       <Planet />
-    </motion.div>
+    </Box>
   );
 }

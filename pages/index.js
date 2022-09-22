@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import ApplicationBar from "../components/applicationBar/AppBar";
 import SideBar from "../components/applicationBar/SideBar";
 import Section1 from "../components/section1/Section1.jsx";

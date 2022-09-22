@@ -18,7 +18,7 @@ const section2 = createSlice({
   reducers: {
     currentPart: (state, action) => {
       state.part += action.payload;
-      state.backgroundPalette = backgrounds[state.part];
+      state.backgroundPalette = backgrounds[state.part] || "none";
     },
     // bgPalette: (state, payload) => {
     //   //   const reduxStore = store.getState();

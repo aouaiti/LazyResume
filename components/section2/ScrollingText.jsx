@@ -10,14 +10,12 @@ import {
   useAnimationFrame,
 } from "framer-motion";
 import { wrap } from "@motionone/utils";
+import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
 // import "../public/Plaster-Regular.ttf";
 
-function ParallaxText({
-  lowerBackg,
-  higherBackg,
-  children,
-  baseVelocity = 100,
-}) {
+function ParallaxText({ children, baseVelocity = 100 }) {
+  const BGColor = useSelector((state) => state.section2.backgroundPalette);
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -63,8 +61,9 @@ function ParallaxText({
    * dynamically generated number of children.
    */
   return (
-    <div className={styles.parallax}>
-      <motion.div
+    <Box className={styles.parallax}>
+      <Box
+        component={motion.div}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 1.5 } }}
         exit={{ opacity: 0 }}
@@ -72,8 +71,8 @@ function ParallaxText({
         style={{
           position: "absolute",
           x,
-          color: `${baseVelocity < 0 ? lowerBackg : higherBackg}`,
-          top: `${baseVelocity < 0 ? "10vh" : "calc(90vh)"}`,
+          color: `${baseVelocity < 0 ? BGColor[1] : BGColor[0]}`,
+          top: `${baseVelocity < 0 ? "10vh" : "calc(85vh)"}`,
         }}
       >
         <span>{children} </span>
@@ -81,30 +80,16 @@ function ParallaxText({
         <span>{children} </span>
         <span>{children} </span>
         <span>{children} </span>
-      </motion.div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
-export default function ScrollingText({ lowerBackg, higherBackg }) {
+export default function ScrollingText() {
   return (
     <section style={{ position: "fixed" }}>
-      <ParallaxText
-        style={{ position: "absolute" }}
-        lowerBackg={lowerBackg}
-        higherBackg={higherBackg}
-        baseVelocity={5}
-      >
-        lazy resume -
-      </ParallaxText>
-      <ParallaxText
-        style={{ position: "absolute" }}
-        lowerBackg={lowerBackg}
-        higherBackg={higherBackg}
-        baseVelocity={-5}
-      >
-        Canadian resume -
-      </ParallaxText>
+      <ParallaxText baseVelocity={5}>lazy resume -</ParallaxText>
+      <ParallaxText baseVelocity={-5}>Canadian resume -</ParallaxText>
     </section>
   );
 }

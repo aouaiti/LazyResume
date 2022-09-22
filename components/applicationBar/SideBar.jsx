@@ -28,6 +28,7 @@ export default function SideBar() {
   // };
   return (
     <Box
+      id="sidebar"
       sx={{
         position: "fixed",
         zIndex: "999",
