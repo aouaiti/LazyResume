@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./sun.module.css";
+import styles from "./sun.module.scss";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
