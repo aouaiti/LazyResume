@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Box } from "@mui/material";
@@ -142,7 +143,7 @@ const Monuments = () => {
   );
 };
 
-export default function Globe() {
+function Globe() {
   return (
     <Box
       component={motion.div}
@@ -161,3 +162,4 @@ export default function Globe() {
     </Box>
   );
 }
+export default memo(Globe);

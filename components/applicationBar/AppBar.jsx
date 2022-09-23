@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -170,4 +170,4 @@ const ResponsiveAppBar = () => {
     </AppBarE>
   );
 };
-export default ResponsiveAppBar;
+export default memo(ResponsiveAppBar);

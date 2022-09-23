@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { triggerInView } from "../../Features/globalUiVars/triggers";
+import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import Trigger from "../trigger/Trigger";
 
 const animateDI = {
@@ -32,6 +33,7 @@ function Section1() {
   const isInView = useInView(section1Trigger, {
     // margin: "0px -40%",
   });
+  // useEffect(() => dispatch(sectionIndex(1)), []);
   useEffect(() => {
     console.log(isInView);
     isInView && dispatch(triggerInView("toSection2"));

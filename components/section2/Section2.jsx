@@ -1,17 +1,22 @@
 import Back from "./Back";
 import Hor from "./Hor";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { currentPart } from "../../Features/globalUiVars/section2";
+import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { Box } from "@mui/material";
 
-export default function Section2() {
+function Section2() {
   //////////////////////////////////redux boiler plate
   const section2part = useSelector((state) => state.section2.part);
+  const currentSection = useSelector((state) => state.currentSection.Section);
   const dispatch = useDispatch();
+  console.log(currentSection);
   //////////////////////////////////redux boiler plate end
   const [displayUI, setDisplayUI = { setDisplayUI }] = useState(0);
+  // useEffect(() => dispatch(sectionIndex(2)), []);
+  if (currentSection !== 2) return null;
   return (
     <Box id="section-2" style={{ margin: "0", textAlign: "center" }}>
       <button
@@ -26,3 +31,5 @@ export default function Section2() {
     </Box>
   );
 }
+
+export default memo(Section2);

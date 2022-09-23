@@ -12,8 +12,12 @@ import ResizeObserver from "resize-observer-polyfill";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { currentPart } from "../../Features/globalUiVars/section2";
+import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { Box } from "@mui/material";
 import Trigger from "../trigger/Trigger";
+// import { useDispatch } from "react-redux";
+import { triggerInView } from "../../Features/globalUiVars/triggers";
+import ResumeElement from "./ResumeElement";
 
 const cont = {
   init: {},
@@ -35,32 +39,32 @@ const child = {
   },
 };
 
-const Elem = forwardRef((props, ref) => (
-  <Box
-    component={motion.div}
-    ref={ref}
-    {...props}
-    variants={child}
-    initial="init"
-    animate="show"
-    // exit="leave"
-    whileInView={{
-      // y: 100,
-      opacity: 1,
-      filter: "grayscale(0%)",
-      // background: "rgb(10,100,10)"
-    }}
-    // transition={{ type: "spring", damping: 15, mass: 0.27, stiffness: 55 }}
-    viewport={{ once: false, amount: "all" }}
-    style={{ minWidth: "15rem", height: "20rem", paddingRight: "3rem" }}
-  >
-    <img
-      style={{ width: "15rem" }}
-      alt="test"
-      src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/resume-template-design-4782fea09714c30bb0e9b926edd90a6f_screen.jpg?ts=1642634555"
-    />
-  </Box>
-));
+// const Elem = forwardRef((props, ref) => (
+//   <Box
+//     component={motion.div}
+//     ref={ref}
+//     {...props}
+//     variants={child}
+//     initial="init"
+//     animate="show"
+//     // exit="leave"
+//     whileInView={{
+//       // y: 100,
+//       opacity: 1,
+//       filter: "grayscale(0%)",
+//       // background: "rgb(10,100,10)"
+//     }}
+//     // transition={{ type: "spring", damping: 15, mass: 0.27, stiffness: 55 }}
+//     viewport={{ once: false, amount: "all" }}
+//     style={{ minWidth: "15rem", height: "20rem", paddingRight: "3rem" }}
+//   >
+//     <img
+//       style={{ width: "15rem" }}
+//       alt="test"
+//       src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/resume-template-design-4782fea09714c30bb0e9b926edd90a6f_screen.jpg?ts=1642634555"
+//     />
+//   </Box>
+// ));
 
 const Contained = ({ numba }) => {
   /////////////////////////////////////// redux stuff
@@ -127,10 +131,26 @@ const Contained = ({ numba }) => {
     setTimeout(() => setFiller(true), 1000);
   }, [filler]);
   useEffect(() => {
-    if (isInView && filler) dispatchPart(currentPart(1));
+    if (isInView && filler) {
+      dispatchPart(currentPart(1));
+      if (section2part === 3) {
+        setTimeout(() => {
+          dispatchPart(sectionIndex(3));
+          dispatchPart(currentPart(2));
+        }, 1000);
+      }
+    }
   }, [isInView]);
   useEffect(() => {
-    if (isInViewInit && filler) dispatchPart(currentPart(-1));
+    if (isInViewInit && filler) {
+      dispatchPart(currentPart(-1));
+      if (section2part === 0) {
+        setTimeout(() => {
+          dispatchPart(sectionIndex(1));
+          dispatchPart(currentPart(+1));
+        }, 1000);
+      }
+    }
   }, [isInViewInit]);
   ////////////////////////////////////// Horizontal scroll logic
   ///////Affect the section width to height and translate the elem on X axis
@@ -238,7 +258,7 @@ const Contained = ({ numba }) => {
           }}
         />
         {Array.from({ length: numba }).map((_, i) => (
-          <Elem
+          <ResumeElement
             key={i}
             ref={(el) => resumeRefs.current.push(el)}
             onMouseEnter={() => {
