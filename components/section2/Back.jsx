@@ -116,7 +116,7 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
               }}
             />
           </Box>
-          <Hor numba={numba} /> */}
+          <Hor numba={numba} />
           <ScrollingText />
           <Globe />
         </>

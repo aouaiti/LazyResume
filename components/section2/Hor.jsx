@@ -133,10 +133,10 @@ const Contained = ({ numba }) => {
   useEffect(() => {
     if (isInView && filler) {
       dispatchPart(currentPart(1));
-      if (section2part === 3) {
+      if (section2part === 2) {
         setTimeout(() => {
           dispatchPart(sectionIndex(3));
-          dispatchPart(currentPart(2));
+          dispatchPart(currentPart(-1));
         }, 1000);
       }
     }

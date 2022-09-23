@@ -23,5 +23,5 @@ const Trigger = forwardRef((props, ref) => {
     />
   );
 });
-
+Trigger.displayName = 'LazyResume';
 export default Trigger;

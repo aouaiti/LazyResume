@@ -51,5 +51,5 @@ const ResumeElement = forwardRef((props, ref) => (
     />
   </Box>
 ));
-
+ResumeElement.displayName = "LazyResume";
 export default memo(ResumeElement);

@@ -11,8 +11,8 @@ function ScrollTrigger() {
   const currentSection = useSelector((state) => state.currentSection.Section);
   const a = 1;
   const sectionMutation = () => {
-    // if (currentSection === 1 && index === -1) return;
-    // if (currentSection === 4 && index === 1) return;
+    if (currentSection === 1 && multiplier === -1) return;
+    if (currentSection === 4 && multiplier === 1) return;
     if (multiplier === 1) {
       if (currentSection === 2) return;
       else dispatch(sectionIndex(currentSection + multiplier));

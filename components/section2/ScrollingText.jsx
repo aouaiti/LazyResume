@@ -72,7 +72,7 @@ function ParallaxText({ children, baseVelocity = 100 }) {
           position: "absolute",
           x,
           color: `${baseVelocity < 0 ? BGColor[1] : BGColor[0]}`,
-          top: `${baseVelocity < 0 ? "10vh" : "calc(85vh)"}`,
+          top: `${baseVelocity < 0 ? "10vh" : "calc(90vh)"}`,
         }}
       >
         <span>{children} </span>
