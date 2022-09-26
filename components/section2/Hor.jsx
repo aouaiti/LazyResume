@@ -216,7 +216,7 @@ const Contained = ({ numba }) => {
       top: "100",
       behavior: "instant",
     });
-  }, [isInViewInit]);
+  }, [section2part]);
   /////////////////////////////////
   return (
     <>
