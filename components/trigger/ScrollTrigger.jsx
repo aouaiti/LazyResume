@@ -26,7 +26,7 @@ function ScrollTrigger() {
 
   useEffect(() => {
     sectionMutation();
-  }, [multiplier]);
+  }, [multiplier, section2Part]);
 
   //   const scrollDirection = useSelector((state) => state.triggers.scroll);
   useEffect(() => {

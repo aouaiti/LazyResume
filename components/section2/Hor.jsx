@@ -1,5 +1,12 @@
 import styles from "./hor.module.scss";
-import { useCallback, useState, useEffect, useRef, forwardRef } from "react";
+import {
+  useCallback,
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  memo,
+} from "react";
 import {
   motion,
   useMotionValue,
@@ -137,20 +144,22 @@ const Contained = ({ numba }) => {
         setTimeout(() => {
           dispatchPart(sectionIndex(3));
           dispatchPart(currentPart(-1));
-        }, 1000);
+        }, 550);
       }
     }
   }, [isInView]);
   useEffect(() => {
     if (isInViewInit && filler) {
+      if (section2part === -1) return;
       dispatchPart(currentPart(-1));
       if (section2part === 0) {
         setTimeout(() => {
           dispatchPart(sectionIndex(1));
           dispatchPart(currentPart(+1));
-        }, 1000);
+        }, 550);
       }
     }
+    // return () => setFiller(false);
   }, [isInViewInit]);
   ////////////////////////////////////// Horizontal scroll logic
   ///////Affect the section width to height and translate the elem on X axis
@@ -289,4 +298,4 @@ const Contained = ({ numba }) => {
     </>
   );
 };
-export default Contained;
+export default memo(Contained);
