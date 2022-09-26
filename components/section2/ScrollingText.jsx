@@ -13,6 +13,7 @@ import { wrap } from "@motionone/utils";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 // import "../public/Plaster-Regular.ttf";
+import Typography from "@mui/material/Typography";
 
 function ParallaxText({ children, baseVelocity = 100 }) {
   const BGColor = useSelector((state) => state.section2.backgroundPalette);
@@ -75,11 +76,11 @@ function ParallaxText({ children, baseVelocity = 100 }) {
           top: `${baseVelocity < 0 ? "10vh" : "calc(90vh)"}`,
         }}
       >
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
+        <Typography variant="h2">{children} </Typography>
+        <Typography variant="h2">{children} </Typography>
+        <Typography variant="h2">{children} </Typography>
+        <Typography variant="h2">{children} </Typography>
+        <Typography variant="h2">{children} </Typography>
       </Box>
     </Box>
   );

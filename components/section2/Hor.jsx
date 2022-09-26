@@ -133,6 +133,7 @@ const Contained = ({ numba }) => {
     margin: "0px -40%",
   });
   const isInViewInit = useInView(triggerInit);
+  console.log("trigger in view :", isInViewInit);
   const [filler, setFiller] = useState(false);
   useEffect(() => {
     setTimeout(() => setFiller(true), 1000);
@@ -187,6 +188,14 @@ const Contained = ({ numba }) => {
   const scrollRef = useRef(null);
   const [scrollWidth, setScrollWidth] = useState(0);
   const { scrollYProgress } = useScroll();
+  //////////////////////////////////////////////////progress bar
+  const tgang = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
+  const scaleProgress = useSpring(tgang, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  //////////////////////////////////////////////////progress bar
   //   console.log("scroll y :", scrollYProgress.get());
   const transform = useTransform(
     scrollYProgress,
@@ -197,11 +206,17 @@ const Contained = ({ numba }) => {
   const spring = useSpring(transform, physics);
   useEffect(() => {
     container && setScrollWidth(container.current.scrollWidth);
+    // window.scrollTo({
+    //   top: "100",
+    //   behavior: "instant",
+    // });
+  }, [container, scrollWidth]);
+  useEffect(() => {
     window.scrollTo({
-      top: 0,
+      top: "100",
       behavior: "instant",
     });
-  }, [container, scrollWidth]);
+  }, [isInViewInit]);
   /////////////////////////////////
   return (
     <>
@@ -295,7 +310,21 @@ const Contained = ({ numba }) => {
           height: scrollWidth,
         }}
       ></Box>
+      <motion.div
+        style={{
+          position: "fixed",
+          bottom: "0",
+          left: "0",
+          right: "0",
+          height: "10px",
+          background: "red",
+          transformOrigin: "0%",
+          scaleX: scaleProgress,
+        }}
+        className="progress-bar"
+        // style={{ scaleProgress }}
+      />
     </>
   );
 };
-export default memo(Contained);
+export default Contained;

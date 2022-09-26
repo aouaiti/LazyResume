@@ -14,14 +14,14 @@ const Trigger = forwardRef((props, ref) => {
       //   viewport={{ root: "app", once: true, amount: "all" }}
       style={{
         // opacity: 0,
-        marginRight: "5vw",
+        marginRight: "15rem",
         background: "black",
-        width: "3rem",
-        height: "3rem",
+        width: "1rem",
+        height: "1rem",
         borderRadius: "50%",
       }}
     />
   );
 });
-Trigger.displayName = 'LazyResume';
+Trigger.displayName = "LazyResume";
 export default Trigger;

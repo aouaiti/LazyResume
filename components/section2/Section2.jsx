@@ -19,12 +19,12 @@ function Section2() {
   if (currentSection !== 2) return null;
   return (
     <Box id="section-2" style={{ margin: "0", textAlign: "center" }}>
-      <button
+      {/* <button
         style={{ position: "fixed", zIndex: "999", top: "10%" }}
         onClick={() => dispatch(currentPart(-section2part))}
       >
         Display section 2
-      </button>
+      </button> */}
       <Back trigger={0} numba={7} />
       <Back trigger={1} numba={10} />
       <Back trigger={2} numba={15} />

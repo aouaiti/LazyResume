@@ -103,7 +103,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: "none", md: "none" }, mr: 1 }} />
 
           <Typography
             variant="h5"
@@ -112,7 +112,7 @@ const ResponsiveAppBar = () => {
             href=""
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "none", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
