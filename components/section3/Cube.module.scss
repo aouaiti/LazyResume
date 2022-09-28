@@ -1,0 +1,74 @@
+:root {
+  --cWidth: 200px;
+  --tCube: calc(var(--cWidth) / 2);
+  --tShadow: calc((var(--cWidth)-50px) * -1);
+  --bColor: #0f0;
+}
+
+.cube {
+  position: fixed;
+  transform-style: preserve-3d;
+  width: var(--cWidth);
+  height: var(--cWidth);
+  transform: rotateX(-30deg);
+  animation: rota 3s linear infinite;
+  @keyframes rota {
+    0% {
+      transform: rotateX(-30deg);
+    }
+    100% {
+      transform: rotateX(-30deg) rotateY(360deg);
+    }
+  }
+  div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    .span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#151515, var(--bColor));
+      /* transform: rotateY(calc(90deg * var(--i))) translateZ(var(--tCube)); */
+      translate: 100px;
+      /* animation: color 8s linear infinite; */
+      /* box-shadow: 0px 0px 20px var(--bColor); */
+    }
+  }
+  .upper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    background: #151815;
+    transform: rotateX(90deg) translateZ(var(--tCube));
+  }
+  .lower {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    background: var(--bColor);
+    transform: rotateX(90deg) translateZ(var(--tShadow));
+    filter: blur(20px);
+    box-shadow: 0px 0px 20px var(--bColor), 0px 0px 40px var(--bColor),
+      0px 0px 80px var(--bColor), 0px 0px 160px var(--bColor),
+      0px 0px 320px var(--bColor), 0px 0px 640px var(--bColor);
+    animation: color 8s linear infinite;
+  }
+}
+
+/* @media (max-width: 775px) {
+    :root {
+      --cWidth: 100px;
+    }
+  } */

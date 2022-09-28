@@ -1,4 +1,4 @@
-import styles from "./Cube.module.css";
+import styles from "./Cube.module.scss";
 
 export default function Cube() {
   return (

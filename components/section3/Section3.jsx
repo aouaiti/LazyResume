@@ -1,5 +1,5 @@
-import Svg1 from "./Svg1";
-import Svg2 from "./Svg2";
+import InnerHUD from "./InnerHUD";
+import OuterHUD from "./OuterHUD";
 import Cube from "./Cube";
 
 const Section3 = () => {
@@ -12,8 +12,8 @@ const Section3 = () => {
         height: "100vh",
       }}
     >
-      <Svg1 />
-      <Svg2 />
+      <InnerHUD />
+      <OuterHUD />
       <Cube />
       {/* <div className="ghost" style={{ height: "500vh" }}></div> */}
     </div>
