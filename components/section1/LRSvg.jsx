@@ -32,7 +32,7 @@ const SVGComponent = () => {
           top: "0%",
           left: "50%",
           position: "absolute",
-          width: "min(100vw, 300px)",
+          width: "max(100vw, 300px)",
           transform: "translateX(-37%)",
           filter: "drop-shadow(-6px 6px 18px black)",
           overflow: "hidden",

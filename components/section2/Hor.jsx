@@ -76,6 +76,8 @@ const child = {
 const Contained = ({ numba }) => {
   /////////////////////////////////////// redux stuff
   const section2part = useSelector((state) => state.section2.part);
+  const sectionNumber = useSelector((state) => state.currentSection.Section);
+  console.log("section number:", sectionNumber);
   const dispatchPart = useDispatch();
   /////////////////////////////////////// end redux stuff
   // const arr = [3, 2, 1];
@@ -133,7 +135,7 @@ const Contained = ({ numba }) => {
     margin: "0px -40%",
   });
   const isInViewInit = useInView(triggerInit);
-  console.log("trigger in view :", isInViewInit);
+  // console.log("trigger in view :", isInViewInit);
   const [filler, setFiller] = useState(false);
   useEffect(() => {
     setTimeout(() => setFiller(true), 1000);
@@ -211,6 +213,7 @@ const Contained = ({ numba }) => {
     //   behavior: "instant",
     // });
   }, [container, scrollWidth]);
+  //FIXME: apply the correct effect for the following section 
   useEffect(() => {
     window.scrollTo({
       top: "100",
