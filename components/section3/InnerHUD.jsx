@@ -1,12 +1,11 @@
-import * as React from "react";
 import {
   motion,
   useScroll,
   useSpring,
-  useMotionValue,
   useTransform,
   useVelocity,
 } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const animate = {
   hidden: {
@@ -18,6 +17,7 @@ const animate = {
 };
 
 const SVGComponent = (props) => {
+  const themeMode = useSelector((state) => state.theme.mode);
   const { scrollY } = useScroll();
   const velocity = useVelocity(scrollY);
   const smoothVelo = useSpring(velocity, { damping: 50, stiffness: 400 });
@@ -44,9 +44,11 @@ const SVGComponent = (props) => {
         viewBox="0 0 1000 1000"
         style={{
           // filter: "drop-shadow(0 0 10px black) ",
-          fill: "white",
           width: "min(100%, 100vh)",
-          filter: "drop-shadow(0 0 10px #adb5bd)  ",
+          fill: `${themeMode === "dark" ? "white" : "#f44336"}`,
+          filter: `${
+            themeMode === "dark" ? "drop-shadow(0 0 10px #adb5bd)" : ""
+          }`,
           opacity: "0.8",
         }}
       >

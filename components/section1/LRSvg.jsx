@@ -28,11 +28,10 @@ const SVGComponent = () => {
         viewBox="0 0 800.97 679.43"
         style={{
           height: "100%",
-          width: "60vw",
           top: "0%",
           left: "50%",
           position: "absolute",
-          width: "max(100vw, 300px)",
+          width: "min(100vw, 300px)",
           transform: "translateX(-37%)",
           filter: "drop-shadow(-6px 6px 18px black)",
           overflow: "hidden",
@@ -52,7 +51,6 @@ const SVGComponent = () => {
         viewBox="0 0 800.97 679.43"
         style={{
           height: "100%",
-          width: "60vw",
           position: "absolute",
           top: "0%",
           left: "50%",

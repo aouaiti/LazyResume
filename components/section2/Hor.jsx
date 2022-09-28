@@ -77,7 +77,7 @@ const Contained = ({ numba }) => {
   /////////////////////////////////////// redux stuff
   const section2part = useSelector((state) => state.section2.part);
   const sectionNumber = useSelector((state) => state.currentSection.Section);
-  console.log("section number:", sectionNumber);
+  // console.log("section number:", sectionNumber);
   const dispatchPart = useDispatch();
   /////////////////////////////////////// end redux stuff
   // const arr = [3, 2, 1];
@@ -213,7 +213,7 @@ const Contained = ({ numba }) => {
     //   behavior: "instant",
     // });
   }, [container, scrollWidth]);
-  //FIXME: apply the correct effect for the following section 
+  //FIXME: apply the correct effect for the following section
   useEffect(() => {
     window.scrollTo({
       top: "100",
@@ -316,13 +316,16 @@ const Contained = ({ numba }) => {
       <motion.div
         style={{
           position: "fixed",
+          top: "0",
           bottom: "0",
-          left: "0",
+          // left: "0",
           right: "0",
-          height: "10px",
+          width: "10px",
+          // height: "10px",
           background: "red",
           transformOrigin: "0%",
-          scaleX: scaleProgress,
+          scaleY: scaleProgress,
+          zIndex: "999",
         }}
         className="progress-bar"
         // style={{ scaleProgress }}
