@@ -1,5 +1,5 @@
 .hudDay {
-  width: min(100%, 200vh);
+  height: 100vh;
   // fill: #00ccff;
   fill: #131313;
   // filter: drop-shadow(0 0 10px #adb5bd);
@@ -12,7 +12,8 @@
   -o-transition: 1s;
 }
 .hudNight {
-  width: min(100%, 200vh);
+  // width: min(100%, 200vh);
+  height: 100vh;
   fill: white;
   filter: drop-shadow(0 0 10px gray);
   -webkit-filter: drop-shadow(0 0 10px gray);

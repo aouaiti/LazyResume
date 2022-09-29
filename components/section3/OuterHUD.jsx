@@ -27,7 +27,7 @@ const SVGComponent = (props) => {
   return (
     <motion.div
       style={{
-        width: "100vw",
+        width: "200vw",
         height: "100vh",
         position: "fixed",
         display: "flex",
