@@ -1,0 +1,25 @@
+.hudDay {
+  width: min(100%, 200vh);
+  // fill: #00ccff;
+  fill: #131313;
+  // filter: drop-shadow(0 0 10px #adb5bd);
+  // -webkit-filter: drop-shadow(0 0 10px #adb5bd);
+  opacity: 0.8;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+}
+.hudNight {
+  width: min(100%, 200vh);
+  fill: white;
+  filter: drop-shadow(0 0 10px gray);
+  -webkit-filter: drop-shadow(0 0 10px gray);
+  opacity: 0.8;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+}

@@ -22,9 +22,9 @@ a {
 body::-webkit-scrollbar {
   display: none;
 }
-body{
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 /* Hide scrollbar for IE, Edge add Firefox */
 .scrollbar-hidden {
@@ -32,6 +32,12 @@ body{
   scrollbar-width: none; /* Firefox */
 }
 
+:root {
+  --cWidth: 200px;
+  --tCube: calc(var(--cWidth) / 2);
+  --tShadow: calc((var(--cWidth)-50px) * -1);
+  --bColor: #0f0;
+}
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

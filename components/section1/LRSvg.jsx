@@ -28,7 +28,6 @@ const SVGComponent = () => {
         viewBox="0 0 800.97 679.43"
         style={{
           height: "100%",
-          width: "60vw",
           top: "0%",
           left: "50%",
           position: "absolute",
@@ -52,7 +51,6 @@ const SVGComponent = () => {
         viewBox="0 0 800.97 679.43"
         style={{
           height: "100%",
-          width: "60vw",
           position: "absolute",
           top: "0%",
           left: "50%",

@@ -24,6 +24,8 @@ function ScrollTrigger() {
     }
   };
 
+  let start = null;
+
   useEffect(() => {
     sectionMutation();
   }, [multiplier, section2Part]);
@@ -39,6 +41,10 @@ function ScrollTrigger() {
     main.addEventListener("DOMMouseScroll", MouseWheelHandler, {
       passive: true,
     });
+
+    window.addEventListener("touchstart", touchStartHandler);
+    window.addEventListener("touchend", touchEndHandler);
+
     document.addEventListener("keydown", TypeHandler);
 
     return () => {
@@ -48,6 +54,19 @@ function ScrollTrigger() {
       window.removeEventListener("keydown", TypeHandler);
     };
   }, []);
+  const touchStartHandler = (e) => {
+    start = e.changedTouches[0];
+  };
+  const touchEndHandler = (e) => {
+    let end = e.changedTouches[0];
+    if (end.screenY - start.screenY > 0) {
+      setMultiplier(-1);
+      // console.log("scrolling up");
+    } else if (end.screenY - start.screenY < 0) {
+      setMultiplier(1);
+      // console.log("scrolling down");
+    }
+  };
 
   const MouseWheelHandler = (e) => {
     // cross-browser wheel delta
