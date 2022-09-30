@@ -8,8 +8,8 @@ const section3 = createSlice({
   name: "section3",
   initialState,
   reducers: {
-    rotate: (state) => {
-      state.rotation++;
+    rotate: (state, action) => {
+      state.rotation += action.payload;
     },
   },
 });

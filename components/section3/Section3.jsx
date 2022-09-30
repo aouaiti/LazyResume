@@ -3,12 +3,26 @@ import OuterHUD from "./OuterHUD";
 import Cube from "./Cube";
 import Image from "next/image";
 import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
+import { motion } from "framer-motion";
+
+const animateImage = {
+  init: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: { duration: 2 },
+  },
+};
 
 const Section3 = () => {
   const themeMode = useSelector((state) => state.theme.mode);
+  const currentSection = useSelector((state) => state.currentSection.Section);
+  if (currentSection !== 3) return null;
   return (
     <>
-      <div
+      <Box
         style={{
           position: "fixed",
           display: "flex",
@@ -23,21 +37,28 @@ const Section3 = () => {
           //   backgroundSize: "cover",
         }}
       >
-        <Image
-          layout="fill"
-          objectFit="cover"
-          alt="back"
-          src="/HUDBack4.jpg"
-          style={{
-            filter: `${themeMode === "dark" ? "" : "invert(1)"}`,
-            transition: "all 1s ease 0s",
-          }}
-        />
+        <Box
+          component={motion.div}
+          variants={animateImage}
+          initial="init"
+          animate="animate"
+        >
+          <Image
+            layout="fill"
+            objectFit="cover"
+            alt="back"
+            src="/HUDBack6.jpg"
+            style={{
+              filter: `${themeMode === "dark" ? "" : "hue-rotate(346deg)"}`,
+              transition: "all 1s ease 0s",
+            }}
+          />
+        </Box>
         <InnerHUD />
         <OuterHUD />
         <Cube />
-      </div>
-      <div className="ghost" style={{ height: "500vh" }}></div>
+      </Box>
+      <Box className="ghost" style={{ height: "500vh" }} />
     </>
   );
 };

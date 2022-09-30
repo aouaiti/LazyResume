@@ -39,7 +39,9 @@ const SVGComponent = (props) => {
       animate="shown"
     >
       <motion.svg
-        className={themeMode === "dark" ? styles.hudNight : styles.hudDay}
+        className={
+          themeMode === "dark" ? styles.hudNightInner : styles.hudDayInner
+        }
         xmlns="http://www.w3.org/2000/svg"
         width={1000}
         height={1000}

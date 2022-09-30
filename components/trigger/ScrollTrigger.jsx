@@ -3,14 +3,16 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { section2Part } from "../../Features/globalUiVars/section2";
+import { rotate } from "../../Features/globalUiVars/section3";
 
 function ScrollTrigger() {
   const [multiplier, setMultiplier] = useState(0);
   const dispatch = useDispatch();
   const section2Part = useSelector((state) => state.section2.part);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const section3Part = useSelector((state) => state.section3.rotation);
   const a = 1;
-  const sectionMutation = () => {
+  const section2Mutation = () => {
     if (currentSection === 1 && multiplier === -1) return;
     if (currentSection === 3 && multiplier === 1) return;
     if (multiplier === 1) {
@@ -23,11 +25,17 @@ function ScrollTrigger() {
       //   dispatch(sectionIndex(currentSection + multiplier));
     }
   };
+  const section3Mutation = (x) => {
+    if (currentSection !== 3) return;
+    if (section3Part < 5 && section3Part >= 0) {
+      dispatch(rotate(x));
+    }
+  };
 
   let start = null;
 
   useEffect(() => {
-    sectionMutation();
+    section2Mutation();
   }, [multiplier, section2Part]);
 
   //   const scrollDirection = useSelector((state) => state.triggers.scroll);
@@ -76,11 +84,13 @@ function ScrollTrigger() {
     if (delta == 1) {
       //   dispatch(scrollIndex(delta));
       setMultiplier(-1);
+      section3Mutation(-1);
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
       return false;
     }
     if (delta == -1) {
       setMultiplier(1);
+      section3Mutation(1);
       //   dispatch(scrollIndex(delta));
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
       return false;
@@ -91,10 +101,14 @@ function ScrollTrigger() {
   const TypeHandler = (e) => {
     if (e.key == "ArrowUp") {
       setMultiplier(-1);
+      section3Mutation(-1);
+      // section3Mutation(-1);
       //   dispatch(scrollIndex(1));
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
     } else if (e.key == "ArrowDown") {
       setMultiplier(1);
+      section3Mutation(1);
+      // section3Mutation(1);
       //   dispatch(scrollIndex(-1));
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
     }

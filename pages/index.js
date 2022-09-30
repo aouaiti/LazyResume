@@ -18,9 +18,9 @@ export default function Home() {
       <ScrollTrigger />
       <ApplicationBar />
       <SideBar />
-      {/* <Section1 />
+      <Section1 />
       <LRSvg />
-      <Section2 /> */}
+      <Section2 />
       <Section3 />
     </div>
   );

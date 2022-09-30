@@ -44,7 +44,9 @@ const SVGComponent = (props) => {
         width={1000}
         height={1000}
         viewBox="0 0 1000 1000"
-        className={themeMode === "dark" ? styles.hudNight : styles.hudDay}
+        className={
+          themeMode === "dark" ? styles.hudNightOuter : styles.hudDayOuter
+        }
         {...props}
       >
         <defs>
