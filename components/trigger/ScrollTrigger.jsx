@@ -19,17 +19,17 @@ function ScrollTrigger() {
     if (currentSection === 1 && multiplier === -1) return;
     if (currentSection === 3 && multiplier === 1) return;
     if (currentSection === 2) return;
-    else dispatch(sectionIndex(currentSection + multiplier));
+    else
+      setTimeout(
+        () => dispatch(sectionIndex(currentSection + multiplier)),
+        200
+      );
   };
-
 
   useEffect(() => {
     if (multiplier === 0 || currentSection !== 3) return;
-    const sec3 = setTimeout(() => {
-      if (currentSection === 3) {
-        dispatch(rotate(multiplier));
-      }
-    }, [50]);
+    if (multiplier === 1 && section3Part === 4) return;
+    const sec3 = setTimeout(() => dispatch(rotate(multiplier)), [50]);
     return () => clearTimeout(sec3);
   }, [multiplier]);
 
@@ -69,12 +69,12 @@ function ScrollTrigger() {
   const touchEndHandler = (e) => {
     let end = e.changedTouches[0];
     if (end.screenY - start.screenY > 0) {
+      setMultiplier(0);
       setMultiplier(-1);
-      setCheckPoint(!checkPoint);
       // console.log("scrolling up");
     } else if (end.screenY - start.screenY < 0) {
+      setMultiplier(0);
       setMultiplier(1);
-      setCheckPoint(!checkPoint);
       // console.log("scrolling down");
     }
   };
@@ -107,14 +107,14 @@ function ScrollTrigger() {
 
   const TypeHandler = (e) => {
     if (e.key == "ArrowUp") {
+      setMultiplier(0);
       setMultiplier(-1);
-      section3Mutation(-1);
       // section3Mutation(-1);
       //   dispatch(scrollIndex(1));
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
     } else if (e.key == "ArrowDown") {
+      setMultiplier(0);
       setMultiplier(1);
-      section3Mutation(1);
       // section3Mutation(1);
       //   dispatch(scrollIndex(-1));
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);

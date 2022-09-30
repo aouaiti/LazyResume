@@ -15,6 +15,9 @@ const animate = {
   shown: {
     scale: 0.8,
   },
+  hidden: {
+    scale: 0,
+  },
 };
 
 const SVGComponent = (props) => {
@@ -37,6 +40,7 @@ const SVGComponent = (props) => {
       variants={animate}
       initial="hidden"
       animate="shown"
+      exit="hidden"
     >
       <motion.svg
         className={

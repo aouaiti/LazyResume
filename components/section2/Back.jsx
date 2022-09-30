@@ -71,7 +71,7 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
   }, [section2part]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter={true}>
       {section2part === trigger && (
         <>
           <Box

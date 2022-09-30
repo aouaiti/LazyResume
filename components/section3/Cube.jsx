@@ -12,6 +12,9 @@ const animate = {
     rotateY: 350,
     scale: 0,
   },
+  hidden: {
+    scale: 0,
+  },
 };
 
 export default function Cube() {
@@ -65,6 +68,7 @@ export default function Cube() {
         style={{ rotateY }}
         variants={animate}
         initial="init"
+        exit="hidden"
       >
         <Box className={styles.upper}>
           {/* <LRSvg style={{ background: "black" }} /> */}
