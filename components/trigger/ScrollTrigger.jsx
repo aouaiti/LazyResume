@@ -7,35 +7,36 @@ import { rotate } from "../../Features/globalUiVars/section3";
 
 function ScrollTrigger() {
   const [multiplier, setMultiplier] = useState(0);
+  const [checkPoint, setCheckPoint] = useState(false);
   const dispatch = useDispatch();
   const section2Part = useSelector((state) => state.section2.part);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const section3Part = useSelector((state) => state.section3.rotation);
   const a = 1;
-  const section2Mutation = () => {
+  const sectionMutation = () => {
+    if (multiplier === 0) return;
+    if (section3Part > 0 && section3Part < 5) return;
     if (currentSection === 1 && multiplier === -1) return;
     if (currentSection === 3 && multiplier === 1) return;
-    if (multiplier === 1) {
-      if (currentSection === 2) return;
-      else dispatch(sectionIndex(currentSection + multiplier));
-      //   dispatch(sectionIndex(currentSection + multiplier));
-    } else {
-      if (currentSection === 2) return;
-      else dispatch(sectionIndex(currentSection + multiplier));
-      //   dispatch(sectionIndex(currentSection + multiplier));
-    }
+    if (currentSection === 2) return;
+    else dispatch(sectionIndex(currentSection + multiplier));
   };
-  const section3Mutation = (x) => {
-    if (currentSection !== 3) return;
-    if (section3Part < 5 && section3Part >= 0) {
-      dispatch(rotate(x));
-    }
-  };
+
+
+  useEffect(() => {
+    if (multiplier === 0 || currentSection !== 3) return;
+    const sec3 = setTimeout(() => {
+      if (currentSection === 3) {
+        dispatch(rotate(multiplier));
+      }
+    }, [50]);
+    return () => clearTimeout(sec3);
+  }, [multiplier]);
 
   let start = null;
 
   useEffect(() => {
-    section2Mutation();
+    sectionMutation();
   }, [multiplier, section2Part]);
 
   //   const scrollDirection = useSelector((state) => state.triggers.scroll);
@@ -69,9 +70,11 @@ function ScrollTrigger() {
     let end = e.changedTouches[0];
     if (end.screenY - start.screenY > 0) {
       setMultiplier(-1);
+      setCheckPoint(!checkPoint);
       // console.log("scrolling up");
     } else if (end.screenY - start.screenY < 0) {
       setMultiplier(1);
+      setCheckPoint(!checkPoint);
       // console.log("scrolling down");
     }
   };
@@ -83,14 +86,18 @@ function ScrollTrigger() {
 
     if (delta == 1) {
       //   dispatch(scrollIndex(delta));
+      setMultiplier(0);
       setMultiplier(-1);
-      section3Mutation(-1);
+
+      // section3Mutation(-1);
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
       return false;
     }
     if (delta == -1) {
+      setMultiplier(0);
       setMultiplier(1);
-      section3Mutation(1);
+
+      // section3Mutation(1);
       //   dispatch(scrollIndex(delta));
       //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
       return false;

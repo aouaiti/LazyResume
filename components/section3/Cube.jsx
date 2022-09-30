@@ -2,7 +2,8 @@ import styles from "./Cube.module.scss";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { rotate } from "../../Features/globalUiVars/section3";
 import LRSvg from "../section1/LRSvg";
 
 const animate = {
@@ -14,10 +15,12 @@ const animate = {
 };
 
 export default function Cube() {
+  const dispatch = useDispatch();
   const [index, setIndex] = useState(1);
   const rotation = useSelector((state) => state.section3.rotation);
   const control = useAnimation();
   const rotateY = useMotionValue(350);
+  useEffect(() => dispatch(rotate(-rotation)), []);
   //   const clickHandler = (e) => {
   //     setIndex(index + 1);
   //     if (index < 4)
