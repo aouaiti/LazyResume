@@ -29,6 +29,7 @@ function ScrollTrigger() {
   useEffect(() => {
     if (multiplier === 0 || currentSection !== 3) return;
     if (multiplier === 1 && section3Part === 4) return;
+    if (multiplier === -1 && section3Part === 0) return;
     const sec3 = setTimeout(() => dispatch(rotate(multiplier)), [50]);
     return () => clearTimeout(sec3);
   }, [multiplier]);

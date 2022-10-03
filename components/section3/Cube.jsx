@@ -53,7 +53,7 @@ export default function Cube() {
           type: "spring",
           stifness: "10",
           dumping: "10",
-          scale: { delay: 1 },
+          //   scale: { delay: 0.5 },
         },
       });
     else if (rotation === 4)
@@ -80,26 +80,53 @@ export default function Cube() {
         initial="init"
         exit="hidden"
       >
-        <CubeFace className={styles.upper} />
+        <CubeFace
+          who="Labidi Abdrahmen"
+          desc="A hater"
+          msg="wait wait , did i mention that you are a loser ?"
+          rate={0.5}
+          url="/3abdou.jpg"
+          className={styles.upper}
+        />
         {/* <span className={styles.lower}></span> */}
         {/* <Box> */}
         <CubeFace
+          who="SLIM KHAMESSI"
+          desc="My mentor"
+          msg="Cool animation bro!"
+          rate={4}
+          url="/slim.jpg"
           sx={{
             transform: "rotateY(0deg) translateZ(150px)",
           }}
         />
 
         <CubeFace
+          who="Labidi Abdrahmen"
+          desc="A hater"
+          msg="nothing special, and i can do far better"
+          rate={0.5}
+          url="/3abdou.jpg"
           sx={{
             transform: "rotateY(90deg) translateZ(150px)",
           }}
         />
         <CubeFace
+          who="Ben ghrib houssem"
+          desc="A hater"
+          msg="The kabbalah is more important than dev"
+          rate={2}
+          url="/7oss.jpg"
           sx={{
             transform: "rotateY(180deg) translateZ(150px)",
           }}
         />
         <CubeFace
+          who="Labidi Abdrahmen"
+          desc="A hater"
+          msg="Even though i don't code am still a better dev than you"
+          rate={1}
+          url="/3abdou.jpg"
           sx={{
             transform: "rotateY(270deg) translateZ(150px)",
           }}

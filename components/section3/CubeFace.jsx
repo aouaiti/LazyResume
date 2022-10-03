@@ -4,7 +4,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
-const CubeFace = (props) => {
+const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
   return (
     <Box {...props}>
       <Box
@@ -17,10 +17,10 @@ const CubeFace = (props) => {
         }}
       >
         <Typography variant="h5" component="div">
-          SLIM KHAMESSI
+          {who}
         </Typography>
         <Typography variant="h6" component="div" color="text.secondary">
-          A close friend
+          {desc}
         </Typography>
       </Box>
       <Box
@@ -32,6 +32,7 @@ const CubeFace = (props) => {
           alignItems: "center",
         }}
       >
+        <hr style={{ width: "90%", position: "absolute" }} />
         <Avatar
           sx={{
             width: 100,
@@ -39,9 +40,8 @@ const CubeFace = (props) => {
             transform: "translateZ(10px)",
           }}
           alt="S K"
-          src="/static/images/avatar/1.jpg"
+          src={url}
         />
-        <hr style={{ width: "90%", position: "absolute" }} />
       </Box>
       <Box
         sx={{
@@ -53,10 +53,10 @@ const CubeFace = (props) => {
         }}
       >
         <Typography variant="body2" color="text.secondary">
-          Nice animation bro; keep it up
+          {msg}
         </Typography>
         {/* <Typography component="legend">Read only</Typography> */}
-        <Rating name="read-only" value={4} readOnly />
+        <Rating name="read-only" value={rate} readOnly />
       </Box>
     </Box>
   );
