@@ -26,13 +26,10 @@ export default function SideBar() {
   const rotation = useSelector((state) => state.section3.rotation);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const dispatch = useDispatch();
-  const eventHandler = (s, p = 0) => {
-    if (currentSection === 2) dispatch(currentPart(-currentSection2Part + p));
-    if (currentSection === 3) {
-      dispatch(rotate(-rotation));
-      // dispatch(rotate(1));
-    }
+  const eventHandler = async (s, p = 0) => {
     dispatch(sectionIndex(s));
+    dispatch(currentPart(-currentSection2Part + p));
+    dispatch(rotate(-rotation));
   };
   // const navTo = (id) => {
   //   const el = document.querySelector(id);

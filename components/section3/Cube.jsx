@@ -18,6 +18,7 @@ const animate = {
   },
   hidden: {
     scale: 0,
+    // opacity: 0,
   },
 };
 
@@ -51,7 +52,7 @@ export default function Cube() {
   useEffect(() => {
     if (rotation < 4)
       control.start({
-        scale: 1,
+        // scale: 1,
         rotateX: -10,
         rotateY: 350 + rotation * 90,
         transition: {
