@@ -7,6 +7,10 @@ import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDou
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { styled, alpha } from "@mui/material/styles";
+import { useSelector, useDispatch } from "react-redux";
+import { sectionIndex } from "../../Features/globalUiVars/currentSection";
+import { currentPart } from "../../Features/globalUiVars/section2";
+import { rotate } from "../../Features/globalUiVars/section3";
 
 const Side = styled(Paper)(({ theme }) => ({
   background: `${
@@ -18,6 +22,18 @@ const Side = styled(Paper)(({ theme }) => ({
 }));
 
 export default function SideBar() {
+  const currentSection2Part = useSelector((state) => state.section2.part);
+  const rotation = useSelector((state) => state.section3.rotation);
+  const currentSection = useSelector((state) => state.currentSection.Section);
+  const dispatch = useDispatch();
+  const eventHandler = (s, p = 0) => {
+    if (currentSection === 2) dispatch(currentPart(-currentSection2Part + p));
+    if (currentSection === 3) {
+      dispatch(rotate(-rotation));
+      // dispatch(rotate(1));
+    }
+    dispatch(sectionIndex(s));
+  };
   // const navTo = (id) => {
   //   const el = document.querySelector(id);
   //   scroll.scrollTo(el, {
@@ -61,29 +77,21 @@ export default function SideBar() {
         }}
         elevation={5}
       >
-        <IconButton
-          onClick={() => {
-            // navTo("#section-1");
-          }}
-        >
+        <IconButton onClick={() => eventHandler(1)}>
           <KeyboardDoubleArrowUpOutlinedIcon
           //   sx={{ "&:hover": { color: "red" } }}
           />
         </IconButton>
-        <IconButton
-          onClick={() => {
-            // navTo("#section-2");
-          }}
-        >
+        <IconButton onClick={() => eventHandler(2, 0)}>
           <ArticleOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => eventHandler(2, 1)}>
           <ArticleOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => eventHandler(2, 2)}>
           <ArticleOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => eventHandler(3)}>
           <KeyboardDoubleArrowDownOutlinedIcon />
         </IconButton>
         {/* TEST */}

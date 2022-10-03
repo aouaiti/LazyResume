@@ -26,6 +26,7 @@ export default function Cube() {
   const [index, setIndex] = useState(1);
   const rotation = useSelector((state) => state.section3.rotation);
   const themeMode = useSelector((state) => state.theme.mode);
+  const currentSection = useSelector((state) => state.currentSection.Section);
   const control = useAnimation();
   const rotateY = useMotionValue(350);
 
@@ -43,6 +44,10 @@ export default function Cube() {
     });
   }, []);
 
+  useEffect(
+    () => currentSection === 3 && control.start({ scale: 1 }),
+    [currentSection]
+  );
   useEffect(() => {
     if (rotation < 4)
       control.start({
