@@ -16,6 +16,7 @@ a {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {

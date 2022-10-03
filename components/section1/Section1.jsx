@@ -60,6 +60,8 @@ function Section1() {
           alt="night"
           layout="fill"
           objectFit="cover"
+          placeholder="blur"
+          blurDataURL="LiamWong_TokyoCity_Night_small.webp"
           // fetchpriority="high"
         />
       </Box>
@@ -79,6 +81,8 @@ function Section1() {
           alt="day"
           layout="fill"
           objectFit="cover"
+          placeholder="blur"
+          blurDataURL="LiamWong_TokyoCity_Day _small.webp"
           // fetchpriority="high"
         />
       </Box>

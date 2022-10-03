@@ -16,7 +16,7 @@ const animateImage = {
   },
   hidden: {
     opacity: 0,
-    transition: { duration: 2 },
+    transition: { duration: 3 },
   },
 };
 
@@ -55,6 +55,8 @@ const Section3 = () => {
                 objectFit="cover"
                 alt="back"
                 src="/HUDBack6.jpg"
+                placeholder="blur"
+                blurDataURL="/HUDBack6_small.webp"
                 style={{
                   filter: `${themeMode === "dark" ? "" : "hue-rotate(346deg)"}`,
                   transition: "all 1s ease 0s",
