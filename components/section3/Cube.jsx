@@ -49,7 +49,12 @@ export default function Cube() {
         scale: 1,
         rotateX: -10,
         rotateY: 350 + rotation * 90,
-        transition: { type: "spring", stifness: "10", dumping: "10" },
+        transition: {
+          type: "spring",
+          stifness: "10",
+          dumping: "10",
+          scale: { delay: 1 },
+        },
       });
     else if (rotation === 4)
       control.start({
