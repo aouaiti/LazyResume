@@ -1,15 +1,15 @@
 .custom_cursor {
   z-index: 99;
-  cursor: none;
+  // cursor: none;
   .cursor {
     z-index: 99;
     position: absolute;
     top: 0;
     left: 0;
-    height: 32px;
-    width: 32px;
-    border-radius: 100%;
-    background: white;
+    // height: 32px;
+    // width: 32px;
+    // border-radius: 100%;
+    // background: white;
     transition: all 0.1s ease-in-out;
     transition-property: width, height, border;
     will-change: width, height, transform, border;

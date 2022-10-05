@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { section2Part } from "../../Features/globalUiVars/section2";
 import { rotate } from "../../Features/globalUiVars/section3";
+import { currentPart } from "../../Features/globalUiVars/section2";
 
 function ScrollTrigger() {
   const [multiplier, setMultiplier] = useState(0);
@@ -16,21 +17,39 @@ function ScrollTrigger() {
   const sectionMutation = () => {
     if (multiplier === 0) return;
     if (section3Part > 0 && section3Part < 5) return;
-    if (currentSection === 1 && multiplier === -1) return;
-    if (currentSection === 3 && multiplier === 1) return;
+    if (currentSection === 1 && (multiplier === -1 || multiplier === 1)) return;
+    if (currentSection === 3 && (multiplier === -1 || multiplier === 1)) return;
     if (currentSection === 2) return;
-    else
-      setTimeout(
-        () => dispatch(sectionIndex(currentSection + multiplier)),
-        200
-      );
+    // else
+    //   setTimeout(
+    //     () => dispatch(sectionIndex(currentSection + multiplier)),
+    //     200
+    //   );
   };
+
+  useEffect(() => {
+    if (currentSection !== 1 || multiplier !== 1) return;
+    let sec1toSec2 = setTimeout(
+      () => dispatch(sectionIndex(currentSection + multiplier)),
+      50
+    );
+    return () => clearTimeout(sec1toSec2);
+  }, [multiplier]);
+
+  useEffect(() => {
+    if (currentSection !== 3 || multiplier !== -1 || section3Part !== 0) return;
+    let sec3toSec2 = setTimeout(
+      () => dispatch(sectionIndex(currentSection + multiplier)),
+      50
+    );
+    return () => clearTimeout(sec3toSec2);
+  }, [multiplier]);
 
   useEffect(() => {
     if (multiplier === 0 || currentSection !== 3) return;
     if (multiplier === 1 && section3Part === 4) return;
     if (multiplier === -1 && section3Part === 0) return;
-    const sec3 = setTimeout(() => dispatch(rotate(multiplier)), [50]);
+    const sec3 = setTimeout(() => dispatch(rotate(multiplier)), 50);
     return () => clearTimeout(sec3);
   }, [multiplier]);
 

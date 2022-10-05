@@ -5,6 +5,7 @@ import Hor from "./Hor";
 import ScrollingText from "./ScrollingText";
 import Globe from "./Globe";
 import { Box } from "@mui/material";
+import { memo } from "react";
 
 const animation = {
   anim1: {
@@ -45,10 +46,10 @@ const animation = {
   },
 };
 
-export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
+const Back = ({ trigger, numba }) => {
   const section2part = useSelector((state) => state.section2.part);
   const BGColor = useSelector((state) => state.section2.backgroundPalette);
-
+  const currentSection = useSelector((state) => state.currentSection.Section);
   const lowerBackControls = useAnimation();
   const higherBackControls = useAnimation();
   const [toggle, setToggle] = useState(true);
@@ -72,7 +73,7 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
 
   return (
     <AnimatePresence exitBeforeEnter={true}>
-      {section2part === trigger && (
+      {section2part === trigger && currentSection === 2 && (
         <>
           <Box
             style={{
@@ -123,4 +124,6 @@ export default function Back({ lowerBackg, higherBackg, trigger, numba }) {
       )}
     </AnimatePresence>
   );
-}
+};
+
+export default memo(Back);

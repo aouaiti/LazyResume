@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
+import Image from "next/image";
 
 const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
   return (
@@ -33,7 +34,7 @@ const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
         }}
       >
         <hr style={{ width: "90%", position: "absolute" }} />
-        <Avatar
+        {/* <Avatar
           sx={{
             width: 100,
             height: 100,
@@ -41,6 +42,13 @@ const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
           }}
           alt="S K"
           src={url}
+        /> */}
+        <Image
+          src={url}
+          alt="review"
+          width="100"
+          height="100"
+          style={{ borderRadius: "50%", transform: "translateZ(10px)" }}
         />
       </Box>
       <Box

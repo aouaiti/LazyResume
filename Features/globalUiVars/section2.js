@@ -18,6 +18,8 @@ const section2 = createSlice({
   reducers: {
     currentPart: (state, action) => {
       state.part += action.payload;
+      if (state.part === -1) state.part = 0;
+      if (state.part === 3) state.part = 2;
       state.backgroundPalette = backgrounds[state.part] || "none";
     },
     // bgPalette: (state, payload) => {

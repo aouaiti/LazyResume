@@ -38,61 +38,28 @@ const child = {
     y: -600,
     opacity: 0.2,
     filter: "grayscale(100%)",
-    // background: "rgb(10,10,10)"
-    // paddingRight:"50px"
   },
   show: {
     y: 0,
   },
 };
 
-// const Elem = forwardRef((props, ref) => (
-//   <Box
-//     component={motion.div}
-//     ref={ref}
-//     {...props}
-//     variants={child}
-//     initial="init"
-//     animate="show"
-//     // exit="leave"
-//     whileInView={{
-//       // y: 100,
-//       opacity: 1,
-//       filter: "grayscale(0%)",
-//       // background: "rgb(10,100,10)"
-//     }}
-//     // transition={{ type: "spring", damping: 15, mass: 0.27, stiffness: 55 }}
-//     viewport={{ once: false, amount: "all" }}
-//     style={{ minWidth: "15rem", height: "20rem", paddingRight: "3rem" }}
-//   >
-//     <img
-//       style={{ width: "15rem" }}
-//       alt="test"
-//       src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/resume-template-design-4782fea09714c30bb0e9b926edd90a6f_screen.jpg?ts=1642634555"
-//     />
-//   </Box>
-// ));
-
 const Contained = ({ numba }) => {
   /////////////////////////////////////// redux stuff
   const section2part = useSelector((state) => state.section2.part);
   const sectionNumber = useSelector((state) => state.currentSection.Section);
-  // console.log("section number:", sectionNumber);
   const dispatchPart = useDispatch();
   /////////////////////////////////////// end redux stuff
-  // const arr = [3, 2, 1];
   const container = useRef(null);
   const resumeRefs = useRef([]);
   /////////////////////////////////////// Cursor mutations
 
   //if user is hovering an icon, cursor locks at it
   const [hoveringResume, setHoveringResume] = useState(null);
-  const [index, setIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [[rotateX, rotateY, scaleX, scaleY], setMovementAnimation] = useState([
     0, 0, 1, 1,
   ]);
-
   const xPos = useMotionValue(0);
   const yPos = useMotionValue(0);
   const xSpring = useSpring(xPos, { damping: 25, stiffness: 700 });
@@ -100,20 +67,20 @@ const Contained = ({ numba }) => {
   xPos.set(mousePosition.x);
   yPos.set(mousePosition.y);
 
-  const onMouseMove = (e) => {
-    if (hoveringResume) {
-      setMovementAnimation([0, 0, 1, 1]);
-      hoverResume(resumeRefs.current[index] || null, "r1");
-      // hoverIcon()
-      return;
-    }
-    const { left, top } = container.current.getBoundingClientRect();
-    const newX = e.clientX - left;
-    const newY = e.clientY - top;
+  // const onMouseMove = useCallback((e) => {
+  //   if (hoveringResume) {
+  //     setMovementAnimation([0, 0, 1, 1]);
+  //     hoverResume(resumeRefs.current[index] || null, "r1");
+  //     // hoverIcon()
+  //     return;
+  //   }
+  //   const { left, top } = container.current.getBoundingClientRect();
+  //   const newX = e.clientX - left;
+  //   const newY = e.clientY - top;
 
-    setMousePosition({ x: newX, y: newY });
-  };
-  const hoverResume = (resumeRef, cursorStyle) => {
+  //   setMousePosition({ x: newX, y: newY });
+  // }, []);
+  const hoverResume = useCallback((resumeRef, cursorStyle) => {
     if (!resumeRef) {
       setHoveringResume(null);
       return;
@@ -127,7 +94,7 @@ const Contained = ({ numba }) => {
       x: left - leftContainer + 24,
       y: top - topContainer + 24,
     });
-  };
+  }, []);
   /////////////////////////////////// Triggers to sections
   const trigger = useRef(null);
   const triggerInit = useRef(null);
@@ -138,7 +105,7 @@ const Contained = ({ numba }) => {
   // console.log("trigger in view :", isInViewInit);
   const [filler, setFiller] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setFiller(true), 1000);
+    const timer = setTimeout(() => setFiller(true), 100);
     return () => clearTimeout(timer);
   }, [filler]);
   useEffect(() => {
@@ -147,7 +114,7 @@ const Contained = ({ numba }) => {
       if (section2part === 2) {
         setTimeout(() => {
           dispatchPart(sectionIndex(3));
-          dispatchPart(currentPart(-1));
+          // dispatchPart(currentPart(-1));
         }, 550);
       }
     }
@@ -159,7 +126,7 @@ const Contained = ({ numba }) => {
       if (section2part === 0) {
         setTimeout(() => {
           dispatchPart(sectionIndex(1));
-          dispatchPart(currentPart(+1));
+          // dispatchPart(currentPart(+1));
         }, 550);
       }
     }
@@ -209,18 +176,19 @@ const Contained = ({ numba }) => {
   const spring = useSpring(transform, physics);
   useEffect(() => {
     container && setScrollWidth(container.current.scrollWidth);
-    // window.scrollTo({
-    //   top: "100",
-    //   behavior: "instant",
-    // });
   }, [container, scrollWidth]);
   //FIXME: apply the correct effect for the following section
   useEffect(() => {
-    window.scrollTo({
-      top: "100",
-      behavior: "instant",
-    });
-  }, [section2part]);
+    const timer = setTimeout(
+      () =>
+        window.scrollTo({
+          top: "100",
+          // behavior: "instant",
+        }),
+      50
+    );
+    return () => clearTimeout(timer);
+  }, []);
   /////////////////////////////////
   return (
     <>
@@ -232,13 +200,13 @@ const Contained = ({ numba }) => {
         animate="show"
         exit="leave"
         className={styles.custom_cursor}
-        onMouseMove={onMouseMove}
-        onMouseLeave={() => {
-          setMovementAnimation([0, 0, 0, 0]);
-        }}
-        onMouseEnter={() => {
-          setMovementAnimation([0, 0, 1, 1]);
-        }}
+        // onMouseMove={onMouseMove}
+        // onMouseLeave={() => {
+        //   setMovementAnimation([0, 0, 0, 0]);
+        // }}
+        // onMouseEnter={() => {
+        //   setMovementAnimation([0, 0, 1, 1]);
+        // }}
         style={{
           position: "fixed",
           display: "flex",
@@ -279,10 +247,6 @@ const Contained = ({ numba }) => {
           animate={{
             translateX: hoveringResume ? -30 : -16,
             translateY: hoveringResume ? -30 : -16,
-            rotateX,
-            rotateY,
-            scaleX,
-            scaleY,
           }}
         />
         {Array.from({ length: numba }).map((_, i) => (
@@ -290,11 +254,9 @@ const Contained = ({ numba }) => {
             key={i}
             ref={(el) => resumeRefs.current.push(el)}
             onMouseEnter={() => {
-              setIndex(i);
               hoverResume(resumeRefs.current[i], "r1");
             }}
             onMouseLeave={() => {
-              setIndex(null);
               setHoveringResume(null);
             }}
           />
@@ -334,4 +296,4 @@ const Contained = ({ numba }) => {
     </>
   );
 };
-export default Contained;
+export default memo(Contained);

@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { currentPart } from "../../Features/globalUiVars/section2";
 import { rotate } from "../../Features/globalUiVars/section3";
+import { memo } from "react";
 
 const Side = styled(Paper)(({ theme }) => ({
   background: `${
@@ -21,14 +22,31 @@ const Side = styled(Paper)(({ theme }) => ({
   transition: "1s",
 }));
 
-export default function SideBar() {
+const SideBar = () => {
   const currentSection2Part = useSelector((state) => state.section2.part);
   const rotation = useSelector((state) => state.section3.rotation);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const dispatch = useDispatch();
   const eventHandler = async (s, p = 0) => {
-    dispatch(currentPart(-currentSection2Part + p));
-    dispatch(rotate(-rotation));
+    if (currentSection === 1 && s === 2) {
+      dispatch(sectionIndex(s));
+      dispatch(currentPart(-currentSection2Part));
+      return;
+    }
+    if (currentSection !== 2 && s === 2) {
+      dispatch(sectionIndex(s));
+      dispatch(currentPart(-currentSection2Part + p));
+      return;
+    }
+    if (currentSection === 2) dispatch(currentPart(-currentSection2Part + p));
+    if (currentSection === 2 && s === 2) return;
+    if (currentSection !== 3 && s === 3) {
+      dispatch(currentPart(-currentSection2Part + 3));
+    }
+    if (currentSection === 3) {
+      dispatch(rotate(-rotation));
+    }
+    if (currentSection === 3 && s === 3) return;
     dispatch(sectionIndex(s));
   };
   // const navTo = (id) => {
@@ -95,4 +113,6 @@ export default function SideBar() {
       </Side>
     </Box>
   );
-}
+};
+
+export default memo(SideBar);

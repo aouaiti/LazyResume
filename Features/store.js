@@ -11,7 +11,7 @@ const store = configureStore({
     currentSection,
     section2,
     section3,
-    triggers,
+    // triggers,
   },
 });
 

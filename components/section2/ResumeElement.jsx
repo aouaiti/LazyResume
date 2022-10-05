@@ -38,6 +38,7 @@ const ResumeElement = forwardRef((props, ref) => (
       minWidth: "20rem",
       height: "20rem",
       pr: "5rem",
+      cursor: "none",
     }}
   >
     <Image
