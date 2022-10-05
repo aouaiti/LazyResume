@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { rotate } from "../../Features/globalUiVars/section3";
-import Image from "next/image";
 import Tilt from "react-parallax-tilt";
-import LRSvg from "../section1/LRSvg";
 import { styled } from "@mui/material/styles";
 import cubeFace from "./CubeFace";
 

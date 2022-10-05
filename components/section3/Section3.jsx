@@ -25,7 +25,7 @@ const Section3 = () => {
   const currentSection = useSelector((state) => state.currentSection.Section);
   //   if (currentSection !== 3) return null;
   return (
-    <AnimatePresence exitBeforeEnter={true}>
+    <AnimatePresence>
       {currentSection === 3 && (
         <>
           <Box
@@ -56,7 +56,7 @@ const Section3 = () => {
                 alt="back"
                 src="/HUDBack6.jpg"
                 placeholder="blur"
-                blurDataURL="/HUDBack6_small.webp"
+                blurDataURL="data:image/webp;base64,UklGRnQCAABXRUJQVlA4WAoAAAAgAAAABQAAAwAASUNDUBgCAAAAAAIYAAAAAAIQAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANlZQOCA2AAAAsAEAnQEqBgAEAAOAWiWoAnQA9IG1bgD+8bc/o51GRFx4G0UdX+RptYn5gkb1jBEpddNl7gAA"
                 style={{
                   filter: `${themeMode === "dark" ? "" : "hue-rotate(346deg)"}`,
                   transition: "all 1s ease 0s",

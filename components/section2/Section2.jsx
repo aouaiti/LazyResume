@@ -12,7 +12,7 @@ function Section2() {
   const section2part = useSelector((state) => state.section2.part);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const dispatch = useDispatch();
-  console.log(currentSection);
+  // console.log(currentSection);
   //////////////////////////////////redux boiler plate end
   const [displayUI, setDisplayUI = { setDisplayUI }] = useState(0);
   // useEffect(() => dispatch(sectionIndex(2)), []);
