@@ -28,9 +28,14 @@ const SideBar = () => {
   const currentSection = useSelector((state) => state.currentSection.Section);
   const dispatch = useDispatch();
   const eventHandler = async (s, p = 0) => {
-    if (currentSection === 1 && s === 2) {
-      dispatch(sectionIndex(s));
+    if (currentSection !== 1 && s === 1) {
       dispatch(currentPart(-currentSection2Part));
+      dispatch(sectionIndex(s));
+      return;
+    }
+    if (currentSection === 1 && s === 2) {
+      dispatch(currentPart(-currentSection2Part));
+      dispatch(sectionIndex(s));
       return;
     }
     if (currentSection !== 2 && s === 2) {

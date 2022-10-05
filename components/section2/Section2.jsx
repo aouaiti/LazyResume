@@ -28,30 +28,30 @@ function Section2() {
   // const dispatch = useDispatch();
   // console.log(currentSection);
   //////////////////////////////////redux boiler plate end
-  if (currentSection !== 2) return null;
+  // if (currentSection !== 2) return null;
   return (
-    // <AnimatePresence exitBeforeEnter={true}>
-    //   {currentSection === 2 && section2part >= 0 && section2part <= 3 && (
-    <Box
-      variants={animate}
-      initial="initial"
-      exit="exit"
-      component={motion.div}
-      id="section-2"
-      style={{ margin: "0", textAlign: "center" }}
-    >
-      {/* <button
+    <AnimatePresence exitBeforeEnter={true}>
+      {currentSection === 2 && section2part >= 0 && section2part <= 3 && (
+        <Box
+          variants={animate}
+          initial="initial"
+          exit="exit"
+          component={motion.div}
+          id="section-2"
+          style={{ margin: "0", textAlign: "center" }}
+        >
+          {/* <button
         style={{ position: "fixed", zIndex: "999", top: "10%" }}
         onClick={() => dispatch(currentPart(-section2part))}
       >
         Display section 2
       </button> */}
-      <Back key={0} trigger={0} numba={7} />
-      <Back key={1} trigger={1} numba={10} />
-      <Back key={2} trigger={2} numba={15} />
-    </Box>
-    //   )}
-    // </AnimatePresence>
+          <Back key={0} trigger={0} numba={7} />
+          <Back key={1} trigger={1} numba={10} />
+          <Back key={2} trigger={2} numba={15} />
+        </Box>
+      )}
+    </AnimatePresence>
   );
 }
 
