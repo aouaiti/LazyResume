@@ -66,6 +66,7 @@ function Section1() {
           objectFit="cover"
           placeholder="blur"
           blurDataURL={blurDataArr.url1}
+          priority
           // fetchpriority="high"
         />
       </Box>

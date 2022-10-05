@@ -30,18 +30,18 @@ const animateIt = {
   },
 };
 const child = {
-  // initial: { y: -100 },
+  initial: { y: -100 },
   hidden: {
     // opacity: 0.5,
     // type: "spring",
     // stiffness: 1000,
-    y: 0,
+    y: -100,
   },
   show: {
     // opacity: 1,
     // type: "spring",
     // stiffness: 1000,
-    y: -100,
+    y: 0,
   },
 };
 
@@ -52,7 +52,7 @@ function Clouds() {
       <motion.div
         variants={animateIt}
         initial="hidden"
-        animate={themeMode === "light" ? "init" : "show"}
+        animate={themeMode === "light" ? "show" : "init"}
         // className={styles.con}
         style={{
           //   overflow: "hidden",a

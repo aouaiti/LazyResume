@@ -105,7 +105,7 @@ const Contained = ({ numba }) => {
   // console.log("trigger in view :", isInViewInit);
   const [filler, setFiller] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setFiller(true), 100);
+    const timer = setTimeout(() => setFiller(true), 1000);
     return () => clearTimeout(timer);
   }, [filler]);
   useEffect(() => {
