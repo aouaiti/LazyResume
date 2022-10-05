@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const animateIt = {
   hidden: {
-    opacity: 0.5,
+    opacity: 1,
     transition: {
       staggerChildren: 0.1,
       //   when: "afterChildren",
@@ -17,7 +17,7 @@ const animateIt = {
     },
   },
   show: {
-    opacity: 1,
+    opacity: 0.5,
     transition: {
       staggerChildren: 0.1,
       // type: "spring",
