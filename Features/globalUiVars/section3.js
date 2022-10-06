@@ -22,4 +22,5 @@ const section3 = createSlice({
 // });
 
 export default section3.reducer;
+export const rota = section3;
 export const { rotate } = section3.actions;

@@ -49,7 +49,7 @@ function ScrollTrigger() {
   useEffect(() => {
     if (currentSection !== 3) {
       setIdle(false);
-      // dispatch(rotate(-section3Part));
+      dispatch(rotate(-section3Part));
       return;
     }
     dispatch(rotate(-section3Part));
