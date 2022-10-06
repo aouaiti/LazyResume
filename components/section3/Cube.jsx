@@ -13,14 +13,17 @@ const animate = {
     rotateX: -10,
     rotateY: 350,
     scale: 0,
+    transition: {
+      delay: 2,
+    },
   },
   hidden: {
     scale: 0,
-    // opacity: 0,
   },
 };
 
 export default function Cube() {
+  const [idle, setIdle] = useState(false);
   const dispatch = useDispatch();
   const [index, setIndex] = useState(1);
   const rotation = useSelector((state) => state.section3.rotation);
@@ -42,12 +45,14 @@ export default function Cube() {
     });
   }, []);
 
-  useEffect(
-    () => currentSection === 3 && control.start({ scale: 1 }),
-    [currentSection]
-  );
   useEffect(() => {
-    if (rotation < 4)
+    currentSection === 3 &&
+      control.start({ scale: 1, transition: { delay: 1 } });
+    const timer = setTimeout(() => setIdle(true), 1000);
+    return () => clearTimeout(timer);
+  }, [currentSection]);
+  useEffect(() => {
+    if (rotation < 4 && idle)
       control.start({
         // scale: 1,
         rotateX: -10,
@@ -56,7 +61,7 @@ export default function Cube() {
           type: "spring",
           stifness: "10",
           dumping: "10",
-          //   scale: { delay: 0.5 },
+          //   delay: 1,
         },
       });
     else if (rotation === 4)

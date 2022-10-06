@@ -7,6 +7,7 @@ import { rotate } from "../../Features/globalUiVars/section3";
 import { currentPart } from "../../Features/globalUiVars/section2";
 
 function ScrollTrigger() {
+  const [idle, setIdle] = useState(false);
   const [multiplier, setMultiplier] = useState(0);
   const [checkPoint, setCheckPoint] = useState(false);
   const dispatch = useDispatch();
@@ -46,9 +47,21 @@ function ScrollTrigger() {
   }, [multiplier]);
 
   useEffect(() => {
+    if (currentSection !== 3) {
+      setIdle(false);
+      // dispatch(rotate(-section3Part));
+      return;
+    }
+    dispatch(rotate(-section3Part));
+    const timer = setTimeout(() => setIdle(true), 1000);
+    return () => clearTimeout(timer);
+  }, [currentSection]);
+
+  useEffect(() => {
     if (multiplier === 0 || currentSection !== 3) return;
     if (multiplier === 1 && section3Part === 4) return;
     if (multiplier === -1 && section3Part === 0) return;
+    if (!idle) return;
     const sec3 = setTimeout(() => dispatch(rotate(multiplier)), 50);
     return () => clearTimeout(sec3);
   }, [multiplier]);
