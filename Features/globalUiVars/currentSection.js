@@ -15,5 +15,4 @@ const currentSection = createSlice({
 });
 
 export default currentSection.reducer;
-export const currentSec = currentSection;
 export const { sectionIndex } = currentSection.actions;

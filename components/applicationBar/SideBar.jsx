@@ -12,6 +12,7 @@ import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { currentPart } from "../../Features/globalUiVars/section2";
 import { rotate } from "../../Features/globalUiVars/section3";
 import { memo } from "react";
+import { makeVisible } from "../../Features/globalUiVars/footer";
 
 const Side = styled(Paper)(({ theme }) => ({
   background: `${
@@ -28,6 +29,7 @@ const SideBar = () => {
   const currentSection = useSelector((state) => state.currentSection.Section);
   const dispatch = useDispatch();
   const eventHandler = async (s, p = 0) => {
+    dispatch(makeVisible(false));
     if (currentSection !== 1 && s === 1) {
       dispatch(currentPart(-currentSection2Part));
       dispatch(sectionIndex(s));
@@ -64,58 +66,77 @@ const SideBar = () => {
   // };
   return (
     <Box
-      id="sidebar"
-      sx={{
+      style={{
+        height: "100vh",
+        width: "10vw",
         position: "fixed",
-        zIndex: "999",
-        top: "50%",
+        // isolation: "isolate",
+        zIndex: "99999",
         right: "0%",
-        transform: "translateY(-50%)",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        "& > :not(style)": {
-          width: 56,
-          minHeight: "100px",
-          height: "fit-content",
-          pt: 2,
-          pb: 2,
-        },
       }}
     >
-      <Side
-        // color="secondary"
+      <Box
+        id="sidebar"
         sx={{
+          position: "absolute",
+          // isolation: "isolate",
+          top: "50%",
+          right: "0%",
+          transform: "translateY(-50%)",
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "16px 0 0 16px",
-          flexDirection: "column",
-          gap: "5px",
-          // color: "white",
+          "& > :not(style)": {
+            width: 56,
+            minHeight: "100px",
+            height: "fit-content",
+            pt: 2,
+            pb: 2,
+          },
         }}
-        elevation={5}
       >
-        <IconButton onClick={() => eventHandler(1)}>
-          <KeyboardDoubleArrowUpOutlinedIcon
-          //   sx={{ "&:hover": { color: "red" } }}
-          />
-        </IconButton>
-        <IconButton onClick={() => eventHandler(2, 0)}>
-          <ArticleOutlinedIcon />
-        </IconButton>
-        <IconButton onClick={() => eventHandler(2, 1)}>
-          <ArticleOutlinedIcon />
-        </IconButton>
-        <IconButton onClick={() => eventHandler(2, 2)}>
-          <ArticleOutlinedIcon />
-        </IconButton>
-        <IconButton onClick={() => eventHandler(3)}>
-          <KeyboardDoubleArrowDownOutlinedIcon />
-        </IconButton>
-        {/* TEST */}
-      </Side>
+        <Side
+          // color="secondary"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "16px 0 0 16px",
+            flexDirection: "column",
+            gap: "5px",
+            // color: "white",
+          }}
+          elevation={5}
+        >
+          <IconButton onClick={() => eventHandler(1)}>
+            <KeyboardDoubleArrowUpOutlinedIcon
+            //   sx={{ "&:hover": { color: "red" } }}
+            />
+          </IconButton>
+          <IconButton onClick={() => eventHandler(2, 0)}>
+            <ArticleOutlinedIcon />
+          </IconButton>
+          <IconButton onClick={() => eventHandler(2, 1)}>
+            <ArticleOutlinedIcon />
+          </IconButton>
+          <IconButton onClick={() => eventHandler(2, 2)}>
+            <ArticleOutlinedIcon />
+          </IconButton>
+          <IconButton onClick={() => eventHandler(3)}>
+            <KeyboardDoubleArrowDownOutlinedIcon />
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              eventHandler(1);
+              dispatch(makeVisible(true));
+            }}
+          >
+            <KeyboardDoubleArrowDownOutlinedIcon />
+          </IconButton>
+          {/* TEST */}
+        </Side>
+      </Box>
     </Box>
   );
 };

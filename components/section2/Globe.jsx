@@ -48,7 +48,7 @@ const animateElem = {
     scale: 0,
   },
   pimpIt: (x) => ({
-    zIndex: 99,
+    // zIndex: 99,
     scale: [0.1, 1.5, 1],
     y: [0, 0, x],
     transition: {
@@ -154,7 +154,7 @@ function Globe() {
         bottom: "-100px",
         left: "50%",
         transform: "translateX(-50%)",
-        zIndex: "9",
+        // zIndex: "9",
       }}
     >
       <Monuments />

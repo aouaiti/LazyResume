@@ -5,6 +5,7 @@ import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { section2Part } from "../../Features/globalUiVars/section2";
 import { rotate } from "../../Features/globalUiVars/section3";
 import { currentPart } from "../../Features/globalUiVars/section2";
+import { makeVisible } from "../../Features/globalUiVars/footer";
 
 function ScrollTrigger() {
   const [idle, setIdle] = useState(false);
@@ -16,6 +17,7 @@ function ScrollTrigger() {
   const section3Part = useSelector((state) => state.section3.rotation);
   const a = 1;
   const sectionMutation = () => {
+    dispatch(makeVisible(false));
     if (multiplier === 0) return;
     if (section3Part > 0 && section3Part < 5) return;
     if (currentSection === 1 && (multiplier === -1 || multiplier === 1)) return;

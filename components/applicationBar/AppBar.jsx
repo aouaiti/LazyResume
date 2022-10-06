@@ -55,6 +55,7 @@ const ResponsiveAppBar = () => {
         backdropFilter: "blur(0px)",
         transition: "0.5s",
         overflow: "hidden",
+        // zIndex: 999,
       }}
     >
       <Sun />

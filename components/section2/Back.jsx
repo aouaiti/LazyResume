@@ -10,7 +10,7 @@ import { memo } from "react";
 const animation = {
   anim1: {
     clipPath: "polygon(0 0%, 100% 0%, 100% 0%, 0% 0%)",
-    zIndex: -10,
+    // zIndex: 10,
     transition: {
       // type:"spring"
       duration: 0.5,
@@ -80,6 +80,7 @@ const Back = ({ trigger, numba }) => {
               width: "100vw",
               height: "100vh",
               position: "fixed",
+              zIndex: "0",
             }}
           >
             <Box

@@ -185,7 +185,7 @@ const Contained = ({ numba }) => {
           top: "100",
           // behavior: "instant",
         }),
-      50
+      500
     );
     return () => clearTimeout(timer);
   }, []);
@@ -281,14 +281,14 @@ const Contained = ({ numba }) => {
           position: "fixed",
           top: "0",
           bottom: "0",
-          // left: "0",
-          right: "0",
+          left: "0",
+          // right: "0",
           width: "10px",
           // height: "10px",
           background: "red",
-          transformOrigin: "0%",
+          transformOrigin: "50%",
           scaleY: scaleProgress,
-          zIndex: "999",
+          zIndex: "99",
         }}
         className="progress-bar"
         // style={{ scaleProgress }}
