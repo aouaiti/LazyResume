@@ -46,7 +46,7 @@ const animation = {
   },
 };
 
-const Back = ({ trigger, numba }) => {
+const Back = ({ trigger, numba, msg }) => {
   const section2part = useSelector((state) => state.section2.part);
   const BGColor = useSelector((state) => state.section2.backgroundPalette);
   const currentSection = useSelector((state) => state.currentSection.Section);
@@ -119,7 +119,7 @@ const Back = ({ trigger, numba }) => {
             />
           </Box>
           <Hor numba={numba} />
-          <ScrollingText />
+          <ScrollingText msg={msg} />
           {/* <Globe /> */}
         </>
       )}

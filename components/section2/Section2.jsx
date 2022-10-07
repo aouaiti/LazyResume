@@ -46,9 +46,9 @@ function Section2() {
       >
         Display section 2
       </button> */}
-          <Back key={0} trigger={0} numba={7} />
-          <Back key={1} trigger={1} numba={10} />
-          <Back key={2} trigger={2} numba={15} />
+          <Back key={0} trigger={0} numba={7} msg={"english resume"} />
+          <Back key={1} trigger={1} numba={10} msg={"french resume"} />
+          <Back key={2} trigger={2} numba={15} msg={"canadian resume"} />
         </Box>
       )}
     </AnimatePresence>

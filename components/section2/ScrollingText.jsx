@@ -88,11 +88,11 @@ function ParallaxText({ children, baseVelocity = 100 }) {
   );
 }
 
-export default function ScrollingText() {
+export default function ScrollingText({ msg }) {
   return (
     <section style={{ position: "fixed" }}>
-      <ParallaxText baseVelocity={5}>lazy resume -</ParallaxText>
-      <ParallaxText baseVelocity={-5}>Canadian resume -</ParallaxText>
+      <ParallaxText baseVelocity={5}> lazy resume - </ParallaxText>
+      <ParallaxText baseVelocity={-5}> {msg} -</ParallaxText>
     </section>
   );
 }

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 
-export default function () {
+const Section4 = () => {
   return <div></div>;
-}
+};
+Section4.displayName = "LazyResume";
+export default Section4;
