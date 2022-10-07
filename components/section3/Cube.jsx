@@ -43,7 +43,7 @@ export default function Cube() {
       top: "0",
       behavior: "instant",
     });
-  }, []);
+  }, [currentSection]);
 
   useEffect(() => {
     currentSection === 3 &&

@@ -25,9 +25,9 @@ export default function Home() {
       // translateY: "-10%",
       y: -74,
       // position: "fixed",
-      // transition: {
-      //   delay: `${currentSection === 1 ? 0 : 1}`,
-      // },
+      transition: {
+        delay: `${currentSection === 1 || currentSection === 3 ? 0 : 0.6}`,
+      },
     },
     leave: {
       scale: 1,
@@ -36,9 +36,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    FooterController.start({
-      transition: { delay: `${currentSection === 1 ? 0 : 1}` },
-    });
+    // FooterController.start({
+    //   transition: { delay: `${currentSection === 1 ? 1 : 1}` },
+    // });
     isFooterVisible && FooterController.start("animate");
     !isFooterVisible && FooterController.start("leave");
   }, [isFooterVisible]);

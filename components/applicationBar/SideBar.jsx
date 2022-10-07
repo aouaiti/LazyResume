@@ -27,16 +27,17 @@ const SideBar = () => {
   const currentSection2Part = useSelector((state) => state.section2.part);
   const rotation = useSelector((state) => state.section3.rotation);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const isFooterVisible = useSelector((state) => state.footer.isVisible);
   const dispatch = useDispatch();
   const eventHandler = async (s, p = 0) => {
-    dispatch(makeVisible(false));
+    if (isFooterVisible === true) dispatch(makeVisible(false));
     if (currentSection !== 1 && s === 1) {
       dispatch(currentPart(-currentSection2Part));
       dispatch(sectionIndex(s));
       return;
     }
     if (currentSection === 1 && s === 2) {
-      dispatch(currentPart(-currentSection2Part));
+      dispatch(currentPart(-currentSection2Part + p));
       dispatch(sectionIndex(s));
       return;
     }
@@ -128,7 +129,11 @@ const SideBar = () => {
           </IconButton>
           <IconButton
             onClick={() => {
-              eventHandler(1);
+              if (currentSection === 1) {
+                dispatch(makeVisible(true));
+                return;
+              }
+              eventHandler(4);
               dispatch(makeVisible(true));
             }}
           >
