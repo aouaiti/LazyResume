@@ -5,6 +5,7 @@ import Section1 from "../components/section1/Section1.jsx";
 import LRSvg from "../components/section1/LRSvg";
 import Section2 from "../components/section2/Section2";
 import Section3 from "../components/section3/Section3";
+import Section4 from "../components/footer/Section4";
 import ScrollTrigger from "../components/trigger/ScrollTrigger";
 import { Box } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
@@ -44,6 +45,7 @@ export default function Home() {
   }, [isFooterVisible]);
   return (
     <>
+      <Section4 />
       <Box id="main">
         <Head>
           <title>Lazy Resume</title>

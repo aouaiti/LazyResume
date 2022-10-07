@@ -60,6 +60,7 @@ function Section1() {
           left: "50%",
           transform: "translate(-50%,-50%)",
           textAlign: "center",
+          width: "100%",
         }}
       >
         {/* best resume builder !! */}
@@ -73,20 +74,23 @@ function Section1() {
             autoStart: true,
             loop: true,
           }}
-          // onInit={(typewriter) => {
-          //   typewriter
-          //     .typeString("Lazy Resume Maker")
-          //     .callFunction(() => {
-          //       console.log("String typed out!");
-          //     })
-          //     .pauseFor(2500)
-          //     .deleteAll()
-          //     .callFunction(() => {
-          //       console.log("All strings were deleted");
-          //     })
-          //     .start();
-          // }}
         />
+      </Typography>
+      <Typography
+        variant="h2"
+        sx={{
+          color: "white",
+          zIndex: "999999",
+          position: "absolute",
+          top: "20%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          textAlign: "center",
+          fontWeight: "bold",
+          width: "100%",
+        }}
+      >
+        LAZY RESUME
       </Typography>
       <Box
         component={motion.div}

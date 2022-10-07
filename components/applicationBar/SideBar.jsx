@@ -71,7 +71,7 @@ const SideBar = () => {
     <Box
       style={{
         height: "100vh",
-        width: "10vw",
+        width: "0vw",
         position: "fixed",
         // isolation: "isolate",
         zIndex: "99999",
@@ -133,6 +133,7 @@ const SideBar = () => {
             onClick={() => {
               if (currentSection === 1) {
                 dispatch(makeVisible(true));
+                setTimeout(() => eventHandler(4), 10);
                 return;
               }
               eventHandler(4);
