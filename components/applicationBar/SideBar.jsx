@@ -13,6 +13,8 @@ import { currentPart } from "../../Features/globalUiVars/section2";
 import { rotate } from "../../Features/globalUiVars/section3";
 import { memo } from "react";
 import { makeVisible } from "../../Features/globalUiVars/footer";
+import Image from "next/image";
+import ForumIcon from "@mui/icons-material/Forum";
 
 const Side = styled(Paper)(({ theme }) => ({
   background: `${
@@ -116,16 +118,16 @@ const SideBar = () => {
             />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 0)}>
-            <ArticleOutlinedIcon />
+            <Image width="30" height="30" src="/us.svg" alt="US flag" />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 1)}>
-            <ArticleOutlinedIcon />
+            <Image width="30" height="30" src="/fr.svg" alt="FR flag" />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 2)}>
-            <ArticleOutlinedIcon />
+            <Image width="30" height="30" src="/ca.svg" alt="CA flag" />
           </IconButton>
           <IconButton onClick={() => eventHandler(3)}>
-            <KeyboardDoubleArrowDownOutlinedIcon />
+            <ForumIcon />
           </IconButton>
           <IconButton
             onClick={() => {
