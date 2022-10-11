@@ -21,7 +21,7 @@ const textContainer = {
     opacity: 1,
     transition: {
       type: "tween",
-      staggerChildren: 0.3,
+      staggerChildren: 0.5,
     },
   },
 };
@@ -96,7 +96,11 @@ const Section4 = () => {
             sx={st}
             variant="h6"
           >
-            <a target="_blank" href="https://github.com/aouaiti/LazyResume">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/aouaiti/LazyResume"
+            >
               Github repo: /LazyResume
             </a>
           </Typography>
@@ -160,7 +164,11 @@ const Section4 = () => {
             sx={st}
             variant="h6"
           >
-            <a target="_blank" href="https://github.com/aouaiti">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/aouaiti"
+            >
               Github: /aouaiti
             </a>
           </Typography>
@@ -170,7 +178,11 @@ const Section4 = () => {
             sx={st}
             variant="h6"
           >
-            <a target="_blank" href="https://www.facebook.com/magnoss">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.facebook.com/magnoss"
+            >
               FaceBook: /magnoss
             </a>
           </Typography>

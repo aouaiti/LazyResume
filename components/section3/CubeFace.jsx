@@ -60,7 +60,11 @@ const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
           alignItems: "center",
         }}
       >
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          sx={{ textAlign: "center" }}
+          variant="body2"
+          color="text.secondary"
+        >
           {msg}
         </Typography>
         {/* <Typography component="legend">Read only</Typography> */}

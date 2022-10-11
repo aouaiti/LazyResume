@@ -16,7 +16,7 @@ const animateImage = {
   },
   hidden: {
     opacity: 0,
-    transition: { duration: 3 },
+    transition: { duration: 0.6 },
   },
 };
 
@@ -72,7 +72,10 @@ const Section3 = () => {
             <OuterHUD scrollProgress={smoothScroll} />
             <Cube />
           </Box>
-          <Box className="ghost" style={{ height: "500vh" }} />
+          <Box
+            className="ghost"
+            style={{ height: `${currentSection === 3 ? "500vh" : "100vh"}` }}
+          />
         </>
       )}
     </AnimatePresence>

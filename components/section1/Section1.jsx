@@ -32,7 +32,6 @@ const animateDI = {
 };
 
 function Section1() {
-  const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.theme.mode);
   const section1Ref = useRef(null);
   const section1Trigger = useRef();
@@ -40,10 +39,7 @@ function Section1() {
     // margin: "0px -40%",
   });
   // useEffect(() => dispatch(sectionIndex(1)), []);
-  useEffect(() => {
-    console.log(isInView);
-    isInView && dispatch(triggerInView("toSection2"));
-  }, [isInView]);
+
   return (
     <Box
       id="section-1"
