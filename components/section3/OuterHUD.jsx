@@ -20,12 +20,16 @@ const animate = {
   },
 };
 
-const SVGComponent = (props) => {
+const SVGComponent = ({ scrollProgress, ...props }) => {
   const themeMode = useSelector((state) => state.theme.mode);
-  const { scrollY } = useScroll();
-  const velocity = useVelocity(scrollY);
-  const smoothVelo = useSpring(velocity, { damping: 50, stiffness: 400 });
-  const ro = useTransform(smoothVelo, [0, 1000], [0, -10], { clamp: false });
+  // const { scrollYProgress } = useScroll();
+  // const smoothScroll = useSpring(scrollYProgress, {
+  //   damping: 50,
+  //   stiffness: 400,
+  // });
+  const ro = useTransform(scrollProgress, [0, 1], [0, 360], {
+    clamp: true,
+  });
 
   return (
     <motion.div

@@ -13,6 +13,9 @@ const child = {
   },
   show: {
     y: 0,
+    transition: {
+      delay: 1,
+    },
   },
 };
 

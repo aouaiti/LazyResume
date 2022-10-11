@@ -4,7 +4,7 @@ import Cube from "./Cube";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const animateImage = {
   init: {
@@ -23,6 +23,11 @@ const animateImage = {
 const Section3 = () => {
   const themeMode = useSelector((state) => state.theme.mode);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const { scrollYProgress } = useScroll();
+  const smoothScroll = useSpring(scrollYProgress, {
+    damping: 50,
+    stiffness: 400,
+  });
   //   if (currentSection !== 3) return null;
   return (
     <AnimatePresence>
@@ -63,8 +68,8 @@ const Section3 = () => {
                 }}
               />
             </Box>
-            <InnerHUD />
-            <OuterHUD />
+            <InnerHUD scrollProgress={smoothScroll} />
+            <OuterHUD scrollProgress={smoothScroll} />
             <Cube />
           </Box>
           <Box className="ghost" style={{ height: "500vh" }} />
