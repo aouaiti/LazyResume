@@ -60,7 +60,7 @@ function ScrollTrigger() {
     }
     if (currentSection !== 3 || multiplier !== -1 || section3Part !== 0) return;
     let sec3toSec2 = setTimeout(() => {
-      dispatch(currentPart(1));
+      if (section2Part !== 3) dispatch(currentPart(1));
       dispatch(sectionIndex(currentSection + multiplier));
     }, 600);
     return () => clearTimeout(sec3toSec2);
@@ -134,6 +134,7 @@ function ScrollTrigger() {
 
   const MouseWheelHandler = (e) => {
     // cross-browser wheel delta
+    console.log(e.detail);
     var e = window.event || e; // old IE support
     var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
 

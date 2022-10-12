@@ -10,12 +10,16 @@ import ScrollTrigger from "../components/trigger/ScrollTrigger";
 import { Box } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
+import ResizeObserver from "resize-observer-polyfill";
 
 export default function Home() {
   const isFooterVisible = useSelector((state) => state.footer.isVisible);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const FooterController = useAnimation();
+  const ref = useRef(null);
+  const [mainHeight, setMainHeight] = useState(0);
 
   const animate = {
     init: {
@@ -24,7 +28,7 @@ export default function Home() {
     animate: {
       scale: 0.8,
       // translateY: "-10%",
-      y: -74,
+      y: -(mainHeight - (mainHeight / 100) * 80) / 2,
       // position: "fixed",
       transition: {
         delay: `${currentSection === 1 || currentSection === 3 ? 0 : 0.6}`,
@@ -36,6 +40,26 @@ export default function Home() {
     },
   };
 
+  const onResize = useCallback((entries, who) => {
+    for (let entry of entries) {
+      [who(entry.contentRect.height)];
+    }
+  }, []);
+
+  useEffect(() => {
+    const resizeObserver1 = new ResizeObserver((entries) =>
+      onResize(entries, setMainHeight)
+    );
+    resizeObserver1.observe(ref.current);
+    return () => {
+      resizeObserver1.disconnect();
+    };
+  }, [onResize]);
+
+  useEffect(() => {
+    console.log(mainHeight);
+  }, [mainHeight]);
+
   useEffect(() => {
     // FooterController.start({
     //   transition: { delay: `${currentSection === 1 ? 1 : 1}` },
@@ -45,8 +69,9 @@ export default function Home() {
   }, [isFooterVisible]);
   return (
     <>
+      {/* <Image src="/convert/font-carte.png" width="800" height="800" /> */}
       <Section4 />
-      <Box id="main">
+      <Box ref={ref} id="main">
         <Head>
           <title>Lazy Resume</title>
           <meta name="description" content="The Lazy Resume Maker" />
