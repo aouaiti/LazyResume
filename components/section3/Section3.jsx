@@ -28,7 +28,6 @@ const Section3 = () => {
     damping: 50,
     stiffness: 400,
   });
-  //   if (currentSection !== 3) return null;
   return (
     <AnimatePresence>
       {currentSection === 3 && (
@@ -41,11 +40,6 @@ const Section3 = () => {
               alignItems: "center",
               height: "100vh",
               width: "100vw",
-              //   transition: 1000,
-              //   background:
-              //     "url(https://static.vecteezy.com/system/resources/previews/001/849/558/original/technology-hud-background-free-vector.jpg)",
-              //   backgroundPosition: "50%",
-              //   backgroundSize: "cover",
             }}
           >
             <Box

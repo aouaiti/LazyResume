@@ -6,15 +6,6 @@ import { useSelector } from "react-redux";
 const animateIt = {
   hidden: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      //   when: "afterChildren",
-      //   delayChildren: 2,
-      //   staggerDirection: -1,
-      //   duration: 1,
-      // type: "spring",
-      // stiffness: 1000,
-    },
   },
   show: {
     opacity: 0.5,
@@ -32,15 +23,9 @@ const animateIt = {
 const child = {
   initial: { y: -100 },
   hidden: {
-    // opacity: 0.5,
-    // type: "spring",
-    // stiffness: 1000,
     y: -100,
   },
   show: {
-    // opacity: 1,
-    // type: "spring",
-    // stiffness: 1000,
     y: 0,
   },
 };

@@ -10,9 +10,7 @@ const section3 = createSlice({
   initialState,
   reducers: {
     rotate: (state, action) => {
-      //   console.log(section3.actions.rotate(20));
       state.rotation += action.payload;
-      //   section3.actions.rotate(20);
     },
   },
   extraReducers: {

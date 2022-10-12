@@ -8,12 +8,7 @@ const Trigger = forwardRef((props, ref) => {
       component={motion.div}
       ref={ref}
       {...props}
-      //   initial={{ opacity: 0, background: "red" }}
-      //   whileInView={{ opacity: 0, background: "yellow" }}
-      // viewport={{ root: lowerRef, once: false, amount: "all" }}
-      //   viewport={{ root: "app", once: true, amount: "all" }}
       style={{
-        // opacity: 0,
         marginRight: "15rem",
         background: "black",
         width: "1rem",

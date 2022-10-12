@@ -1,39 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import Hor from "./Hor";
 import ScrollingText from "./ScrollingText";
-import Globe from "./Globe";
 import { Box } from "@mui/material";
 import { memo } from "react";
 
 const animation = {
   anim1: {
     clipPath: "polygon(0 0%, 100% 0%, 100% 0%, 0% 0%)",
-    // zIndex: 10,
     transition: {
-      // type:"spring"
       duration: 0.5,
       ease: "linear",
-      // delay: 2
     },
   },
   anim2: {
     clipPath: "polygon(0 0%, 100% 0%, 100% 80%, 0% 20%)",
     transition: {
-      // type:"spring"
       duration: 0.5,
       ease: "linear",
-      // delay: 1.6
     },
   },
   anim3: {
     clipPath: "polygon(0 20%, 100% 80%, 100% 100%, 0 100%)",
     transition: {
-      // type:"spring"
       duration: 0.5,
       ease: "linear",
-      // delay: 0.5
     },
   },
   anim4: {
@@ -41,7 +33,6 @@ const animation = {
     zIndex: 999,
     transition: {
       duration: 0.5,
-      // delay: 1
     },
   },
 };
@@ -52,8 +43,6 @@ const Back = ({ trigger, numba, msg }) => {
   const currentSection = useSelector((state) => state.currentSection.Section);
   const lowerBackControls = useAnimation();
   const higherBackControls = useAnimation();
-  const [toggle, setToggle] = useState(true);
-  const [currentState, setCurrentState] = useState(1);
   const lowerRef = useRef(null);
 
   useEffect(() => {
@@ -120,7 +109,6 @@ const Back = ({ trigger, numba, msg }) => {
           </Box>
           <Hor numba={numba} />
           <ScrollingText msg={msg} />
-          {/* <Globe /> */}
         </>
       )}
     </AnimatePresence>

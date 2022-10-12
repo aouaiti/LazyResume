@@ -1,5 +1,5 @@
 import styles from "./scrollingText.module.scss";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import {
   motion,
   useScroll,
@@ -12,7 +12,6 @@ import {
 import { wrap } from "@motionone/utils";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
-// import "../public/Plaster-Regular.ttf";
 import Typography from "@mui/material/Typography";
 
 function ParallaxText({ children, baseVelocity = 100 }) {
@@ -33,8 +32,6 @@ function ParallaxText({ children, baseVelocity = 100 }) {
   const directionFactor = useRef(1);
   const prevT = useRef(0);
   useAnimationFrame((t) => {
-    // console.log("x=", x.get());
-    // console.log("baseX=", baseX.get());
     if (!prevT.current) prevT.current = t;
     const timeDelta = t - prevT.current;
     let moveBy = directionFactor.current * baseVelocity * (timeDelta / 1000);
@@ -55,7 +52,6 @@ function ParallaxText({ children, baseVelocity = 100 }) {
 
     prevT.current = t;
   });
-  // useEffect(() => console.log(backg), [backg]);
   /**
    * The number of times to repeat the child text should be dynamically calculated
    * based on the size of the text and viewport. Likewise, the x motion value is

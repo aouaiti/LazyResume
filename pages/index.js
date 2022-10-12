@@ -25,8 +25,6 @@ export default function Home() {
     },
     animate: {
       scale: 0.8,
-      // translateY: "-10%",
-      // position: "fixed",
       transition: {
         delay: `${previousSection === 1 ? 0 : 0.6}`,
       },
@@ -40,9 +38,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // FooterController.start({
-    //   transition: { delay: `${currentSection === 1 ? 1 : 1}` },
-    // });
     currentSection === 4 && FooterController.start("animate");
     currentSection !== 4 && FooterController.start("leave");
   }, [currentSection]);
@@ -56,8 +51,6 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <ScrollTrigger />
-        {/* <Section2 />
-        <Section3 /> */}
         <Box
           component={motion.div}
           variants={animate}
@@ -65,10 +58,7 @@ export default function Home() {
           animate={FooterController}
           style={{
             transformOrigin: "top",
-            // position: "fixed",
-            // transform: "scale(0.8) translateY(-12.5%)",
             height: "100vh",
-            // overflow: "hidden",
           }}
         >
           <Section1 />

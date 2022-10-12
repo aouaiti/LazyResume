@@ -1,11 +1,5 @@
 import styles from "./hudStyles.module.scss";
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useScroll,
-  useVelocity,
-} from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import { useSelector } from "react-redux";
 
 const animate = {
@@ -22,11 +16,6 @@ const animate = {
 
 const SVGComponent = ({ scrollProgress, ...props }) => {
   const themeMode = useSelector((state) => state.theme.mode);
-  // const { scrollYProgress } = useScroll();
-  // const smoothScroll = useSpring(scrollYProgress, {
-  //   damping: 50,
-  //   stiffness: 400,
-  // });
   const ro = useTransform(scrollProgress, [0, 1], [0, 360], {
     clamp: true,
   });

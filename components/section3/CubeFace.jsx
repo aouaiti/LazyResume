@@ -2,7 +2,6 @@ import { memo } from "react";
 import { Box } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
 
 const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
@@ -34,15 +33,6 @@ const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
         }}
       >
         <hr style={{ width: "90%", position: "absolute" }} />
-        {/* <Avatar
-          sx={{
-            width: 100,
-            height: 100,
-            transform: "translateZ(10px)",
-          }}
-          alt="S K"
-          src={url}
-        /> */}
         <Image
           src={url}
           alt="review"
@@ -67,7 +57,6 @@ const CubeFace = ({ who, desc, msg, rate, url, ...props }) => {
         >
           {msg}
         </Typography>
-        {/* <Typography component="legend">Read only</Typography> */}
         <Rating name="read-only" value={rate} readOnly />
       </Box>
     </Box>

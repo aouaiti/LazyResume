@@ -54,14 +54,12 @@ export default function Cube() {
   useEffect(() => {
     if (rotation < 4 && idle)
       control.start({
-        // scale: 1,
         rotateX: -10,
         rotateY: 350 + rotation * 90,
         transition: {
           type: "spring",
           stifness: "10",
           dumping: "10",
-          //   delay: 1,
         },
       });
     else if (rotation === 4)
@@ -74,12 +72,6 @@ export default function Cube() {
   }, [rotation]);
   return (
     <>
-      {/* <button
-        onClick={clickHandler}
-        style={{ zIndex: "99999", position: "fixed", top: "15%" }}
-      >
-        rotate
-      </button> */}
       <motion.div
         className={styles.cube}
         animate={control}
@@ -96,8 +88,6 @@ export default function Cube() {
           url="/3abdou.webp"
           className={styles.upper}
         />
-        {/* <span className={styles.lower}></span> */}
-        {/* <Box> */}
         <CubeFace
           who="SLIM KHAMESSI"
           desc="My mentor"
@@ -139,7 +129,6 @@ export default function Cube() {
             transform: "rotateY(270deg) translateZ(150px)",
           }}
         />
-        {/* </Box> */}
       </motion.div>
     </>
   );

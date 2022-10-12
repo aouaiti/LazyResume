@@ -1,10 +1,8 @@
-import { useRef, useEffect, memo } from "react";
+import { useRef, memo } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Box } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { triggerInView } from "../../Features/globalUiVars/triggers";
-import { sectionIndex } from "../../Features/globalUiVars/currentSection";
+import { useSelector } from "react-redux";
 import Trigger from "../trigger/Trigger";
 import Typewriter from "typewriter-effect";
 import Typography from "@mui/material/Typography";
@@ -38,7 +36,6 @@ function Section1() {
   const isInView = useInView(section1Trigger, {
     // margin: "0px -40%",
   });
-  // useEffect(() => dispatch(sectionIndex(1)), []);
 
   return (
     <Box
@@ -59,7 +56,6 @@ function Section1() {
           width: "100%",
         }}
       >
-        {/* best resume builder !! */}
         <Typewriter
           options={{
             strings: [
@@ -95,9 +91,6 @@ function Section1() {
           width: "100%",
           height: "100%",
         }}
-        // variants={animateDI}
-        // initial="hide"
-        // animate={`${themeMode === "light" ? "hide" : "show"}`}
       >
         <Image
           src={"/LiamWong_TokyoCity_Night.jpg"}
@@ -107,7 +100,7 @@ function Section1() {
           placeholder="blur"
           blurDataURL={blurDataArr.url1}
           priority
-          // fetchpriority="high"
+          fetchpriority="high"
         />
       </Box>
       <Box

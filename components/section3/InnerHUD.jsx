@@ -16,9 +16,6 @@ const animate = {
 
 const SVGComponent = ({ scrollProgress, ...props }) => {
   const themeMode = useSelector((state) => state.theme.mode);
-  // const { scrollY } = useScroll();
-  // const velocity = useVelocity(scrollY);
-  // const smoothVelo = useSpring(velocity, { damping: 50, stiffness: 400 });
   const ro = useTransform(scrollProgress, [0, 1], [0, -360], { clamp: true });
   return (
     <motion.div
@@ -44,15 +41,6 @@ const SVGComponent = ({ scrollProgress, ...props }) => {
         width={1000}
         height={1000}
         viewBox="0 0 1000 1000"
-        // style={{
-        //   // filter: "drop-shadow(0 0 10px black) ",
-        //   width: "min(100%, 100vh)",
-        //   fill: `${themeMode === "dark" ? "white" : "#f44336"}`,
-        //   filter: `${
-        //     themeMode === "dark" ? "drop-shadow(0 0 10px #adb5bd)" : ""
-        //   }`,
-        //   opacity: "0.8",
-        // }}
       >
         <defs>
           <style>

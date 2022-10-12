@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -14,9 +14,7 @@ const st = {
 };
 
 const textContainer = {
-  init: {
-    // opacity: 0,
-  },
+  init: {},
   animate: {
     opacity: 1,
     transition: {
@@ -46,7 +44,6 @@ const Section4 = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        // padding: "0 0px",
       }}
     >
       <Box
@@ -65,7 +62,6 @@ const Section4 = () => {
             width: { xs: "50px", sm: "100px" },
             height: { xs: "50px", sm: "100px" },
             margin: "0 10px",
-            // display: { xs: "none", sm: "block" },
           }}
         >
           <Image
@@ -131,13 +127,11 @@ const Section4 = () => {
             height: { xs: "50px", sm: "100px" },
             margin: "0 10px",
             order: { xs: "1", sm: "2" },
-            // display: { xs: "none", sm: "block" },
           }}
         >
           <Image
             width="100"
             height="100"
-            // layout="fill"
             objectFit="cover"
             src="/aouaiti.jpg"
             style={{ borderRadius: "50%" }}

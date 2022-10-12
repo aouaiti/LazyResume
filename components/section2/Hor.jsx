@@ -22,8 +22,6 @@ import { currentPart } from "../../Features/globalUiVars/section2";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { Box } from "@mui/material";
 import Trigger from "../trigger/Trigger";
-// import { useDispatch } from "react-redux";
-import { triggerInView } from "../../Features/globalUiVars/triggers";
 import ResumeElement from "./ResumeElement";
 
 const cont = {
@@ -67,19 +65,6 @@ const Contained = ({ numba }) => {
   xPos.set(mousePosition.x);
   yPos.set(mousePosition.y);
 
-  // const onMouseMove = useCallback((e) => {
-  //   if (hoveringResume) {
-  //     setMovementAnimation([0, 0, 1, 1]);
-  //     hoverResume(resumeRefs.current[index] || null, "r1");
-  //     // hoverIcon()
-  //     return;
-  //   }
-  //   const { left, top } = container.current.getBoundingClientRect();
-  //   const newX = e.clientX - left;
-  //   const newY = e.clientY - top;
-
-  //   setMousePosition({ x: newX, y: newY });
-  // }, []);
   const hoverResume = useCallback((resumeRef, cursorStyle) => {
     if (!resumeRef) {
       setHoveringResume(null);
@@ -102,7 +87,6 @@ const Contained = ({ numba }) => {
     margin: "0px -40%",
   });
   const isInViewInit = useInView(triggerInit);
-  // console.log("trigger in view :", isInViewInit);
   const [filler, setFiller] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => setFiller(true), 1000);
@@ -114,7 +98,6 @@ const Contained = ({ numba }) => {
       if (section2part === 2) {
         setTimeout(() => {
           dispatchPart(sectionIndex(3));
-          // dispatchPart(currentPart(-1));
         }, 550);
       }
     }
@@ -126,7 +109,6 @@ const Contained = ({ numba }) => {
       if (section2part === 0) {
         setTimeout(() => {
           dispatchPart(sectionIndex(1));
-          // dispatchPart(currentPart(+1));
         }, 550);
       }
     }
@@ -166,7 +148,6 @@ const Contained = ({ numba }) => {
     restDelta: 0.001,
   });
   //////////////////////////////////////////////////progress bar
-  //   console.log("scroll y :", scrollYProgress.get());
   const transform = useTransform(
     scrollYProgress,
     [0, 1],
@@ -200,13 +181,6 @@ const Contained = ({ numba }) => {
         animate="show"
         exit="leave"
         className={styles.custom_cursor}
-        // onMouseMove={onMouseMove}
-        // onMouseLeave={() => {
-        //   setMovementAnimation([0, 0, 0, 0]);
-        // }}
-        // onMouseEnter={() => {
-        //   setMovementAnimation([0, 0, 1, 1]);
-        // }}
         style={{
           position: "fixed",
           display: "flex",
@@ -224,16 +198,7 @@ const Contained = ({ numba }) => {
           variants={child}
           initial="init"
           animate="show"
-          // viewport={{ root: lowerRef, once: false, amount: "all" }}
           viewport={{ root: "app", once: true, amount: "all" }}
-          // style={{
-          //   opacity: 0,
-          //   marginRight: "5vw",
-          //   background: "black",
-          //   width: "3rem",
-          //   height: "3rem",
-          //   borderRadius: "50%",
-          // }}
         />
         <Box
           component={motion.div}
@@ -282,16 +247,13 @@ const Contained = ({ numba }) => {
           top: "0",
           bottom: "0",
           left: "0",
-          // right: "0",
           width: "10px",
-          // height: "10px",
           background: "red",
           transformOrigin: "50%",
           scaleY: scaleProgress,
           zIndex: "99",
         }}
         className="progress-bar"
-        // style={{ scaleProgress }}
       />
     </>
   );

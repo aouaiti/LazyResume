@@ -1,14 +1,12 @@
-import { useEffect, memo, useCallback, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { rotate } from "../../Features/globalUiVars/section3";
-import { currentPart } from "../../Features/globalUiVars/section2";
 
 function ScrollTrigger() {
   const [idle, setIdle] = useState(false);
   const [multiplier, setMultiplier] = useState(0);
-  const [checkPoint, setCheckPoint] = useState(false);
   const dispatch = useDispatch();
   const section2Part = useSelector((state) => state.section2.part);
   const currentSection = useSelector((state) => state.currentSection.Section);
@@ -18,17 +16,11 @@ function ScrollTrigger() {
   const section3Part = useSelector((state) => state.section3.rotation);
   const a = 1;
   const sectionMutation = () => {
-    // dispatch(makeVisible(false));
     if (multiplier === 0) return;
     if (section3Part > 0 && section3Part < 5) return;
     if (currentSection === 1 && (multiplier === -1 || multiplier === 1)) return;
     if (currentSection === 3 && (multiplier === -1 || multiplier === 1)) return;
     if (currentSection === 2) return;
-    // else
-    //   setTimeout(
-    //     () => dispatch(sectionIndex(currentSection + multiplier)),
-    //     200
-    //   );
   };
   useEffect(() => {
     if (currentSection !== 1 || multiplier !== 1) return;
@@ -53,7 +45,6 @@ function ScrollTrigger() {
         top: "0",
         // behavior: "instant",
       });
-      // dispatch(rotate(-section3Part));
       dispatch(sectionIndex(4));
       return;
     }
@@ -68,10 +59,8 @@ function ScrollTrigger() {
   useEffect(() => {
     if (currentSection !== 3) {
       setIdle(false);
-      // dispatch(rotate(-section3Part));
       return;
     }
-    // dispatch(rotate(-section3Part));
     const timer = setTimeout(() => setIdle(true), 1000);
     return () => clearTimeout(timer);
   }, [currentSection]);
@@ -94,7 +83,6 @@ function ScrollTrigger() {
     sectionMutation();
   }, [multiplier, section2Part]);
 
-  //   const scrollDirection = useSelector((state) => state.triggers.scroll);
   useEffect(() => {
     const main = document.querySelector("#main");
     // IE9, Chrome, Safari, Opera
@@ -134,7 +122,6 @@ function ScrollTrigger() {
 
   const MouseWheelHandler = (e) => {
     // cross-browser wheel delta
-    console.log(e.detail);
     var e = window.event || e; // old IE support
     var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
 

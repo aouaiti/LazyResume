@@ -2,15 +2,12 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import KeyboardDoubleArrowUpOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowUpOutlined";
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import KeyboardDoubleArrowDownOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowDownOutlined";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { styled, alpha } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { currentPart } from "../../Features/globalUiVars/section2";
-import { rotate } from "../../Features/globalUiVars/section3";
 import { memo } from "react";
 import Image from "next/image";
 import ForumIcon from "@mui/icons-material/Forum";
@@ -26,54 +23,29 @@ const Side = styled(Paper)(({ theme }) => ({
 
 const SideBar = () => {
   const currentSection2Part = useSelector((state) => state.section2.part);
-  const rotation = useSelector((state) => state.section3.rotation);
   const currentSection = useSelector((state) => state.currentSection.Section);
 
   const dispatch = useDispatch();
 
   const eventHandler = async (s, p = 0) => {
     if (currentSection === s && currentSection2Part === p) return;
-    if (currentSection !== 1 && s === 1) {
-      // dispatch(currentPart(-currentSection2Part));//todo
-      dispatch(sectionIndex(s));
-      return;
-    }
-    if (currentSection === 1 && s === 2) {
-      dispatch(currentPart(-currentSection2Part + p));
-      dispatch(sectionIndex(s));
-      return;
-    }
-    if (currentSection !== 2 && s === 2) {
+    if ((currentSection !== 2 || currentSection === 1) && s === 2) {
       dispatch(sectionIndex(s));
       dispatch(currentPart(-currentSection2Part + p));
       return;
     }
     if (currentSection === 2) dispatch(currentPart(-currentSection2Part + p));
     if (currentSection === 2 && s === 2) return;
-    if (currentSection !== 3 && s === 3) {
-      // dispatch(currentPart(-currentSection2Part + 3));//todo
-    }
-    if (currentSection === 3) {
-      // rotation !== 0 && dispatch(rotate(-rotation));//todo
-    }
     if (currentSection === 3 && s === 3) return;
     dispatch(sectionIndex(s));
   };
-  // const navTo = (id) => {
-  //   const el = document.querySelector(id);
-  //   scroll.scrollTo(el, {
-  //     offset: "-100",
-  //     duration: "2000",
-  //     easing: [0.25, 0.0, 0.35, 1.0],
-  //   });
-  // };
+
   return (
     <Box
       style={{
         height: "100vh",
         width: "0vw",
         position: "fixed",
-        // isolation: "isolate",
         zIndex: "99999",
         right: "0%",
       }}
@@ -82,7 +54,6 @@ const SideBar = () => {
         id="sidebar"
         sx={{
           position: "absolute",
-          // isolation: "isolate",
           top: "50%",
           right: "0%",
           transform: "translateY(-50%)",
@@ -100,7 +71,6 @@ const SideBar = () => {
         }}
       >
         <Side
-          // color="secondary"
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -113,9 +83,7 @@ const SideBar = () => {
           elevation={5}
         >
           <IconButton onClick={() => eventHandler(1)}>
-            <KeyboardDoubleArrowUpOutlinedIcon
-            //   sx={{ "&:hover": { color: "red" } }}
-            />
+            <KeyboardDoubleArrowUpOutlinedIcon />
           </IconButton>
           <IconButton onClick={() => eventHandler(2, 0)}>
             <Image width="30" height="30" src="/us.svg" alt="US flag" />
@@ -126,7 +94,7 @@ const SideBar = () => {
           <IconButton onClick={() => eventHandler(2, 2)}>
             <Image width="30" height="30" src="/ca.svg" alt="CA flag" />
           </IconButton>
-          <IconButton onClick={() => eventHandler(3)}>
+          <IconButton onClick={() => eventHandler(3, 3)}>
             <ForumIcon />
           </IconButton>
           <IconButton
@@ -136,7 +104,6 @@ const SideBar = () => {
           >
             <KeyboardDoubleArrowDownOutlinedIcon />
           </IconButton>
-          {/* TEST */}
         </Side>
       </Box>
     </Box>
