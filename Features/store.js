@@ -13,13 +13,11 @@ const store = configureStore({
     section2,
     section3,
     footer,
-    // triggers,
   },
 });
 
 // store.subscribe(() => {
-//   console.log("state changed");
-//   console.log(store.getState().section2);
+//   console.log(store.getState());
 // });
 
 export default store;

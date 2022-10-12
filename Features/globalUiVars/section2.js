@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import store from "../store";
+import { sectionIndex } from "./currentSection";
+import { currentSection } from "./currentSection";
 
 const backgrounds = [
   ["#006eb8", "#4795d1"],
@@ -22,17 +23,13 @@ const section2 = createSlice({
       if (state.part === 3) state.part = 2;
       state.backgroundPalette = backgrounds[state.part] || "none";
     },
-    // bgPalette: (state, payload) => {
-    //   //   const reduxStore = store.getState();
-    //   //   const section2part = reduxStore.section2.currentPart;
-    //   state.backgroundPalette = backgrounds[payload];
-    // },
   },
-  //   extraReducers: {
-  //     ["section2/currentPart"]: (state) => {
-  //       state.backgroundPalette = backgrounds[2];
-  //     },
-  //   },
+  extraReducers: {
+    [sectionIndex]: (state, action) => {
+      if (action.payload >= 3) state.part = 2;
+      if (action.payload === 1) state.part = 0;
+    },
+  },
 });
 
 export default section2.reducer;

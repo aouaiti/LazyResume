@@ -5,21 +5,19 @@ import Section1 from "../components/section1/Section1.jsx";
 import LRSvg from "../components/section1/LRSvg";
 import Section2 from "../components/section2/Section2";
 import Section3 from "../components/section3/Section3";
-import Section4 from "../components/footer/Section4";
+import Section4 from "../components/section4/Section4";
 import ScrollTrigger from "../components/trigger/ScrollTrigger";
 import { Box } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 import { useSelector } from "react-redux";
-import { useEffect, useRef, useState, useCallback } from "react";
-import Image from "next/image";
-import ResizeObserver from "resize-observer-polyfill";
+import { useEffect } from "react";
 
 export default function Home() {
-  const isFooterVisible = useSelector((state) => state.footer.isVisible);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const previousSection = useSelector(
+    (state) => state.currentSection.prevSection
+  );
   const FooterController = useAnimation();
-  const ref = useRef(null);
-  const [mainHeight, setMainHeight] = useState(0);
 
   const animate = {
     init: {
@@ -28,50 +26,30 @@ export default function Home() {
     animate: {
       scale: 0.8,
       // translateY: "-10%",
-      y: -(mainHeight - (mainHeight / 100) * 80) / 2,
       // position: "fixed",
       transition: {
-        delay: `${currentSection === 1 || currentSection === 3 ? 0 : 0.6}`,
+        delay: `${previousSection === 1 ? 0 : 0.6}`,
       },
     },
     leave: {
       scale: 1,
-      y: 0,
+      transition: {
+        duration: 0,
+      },
     },
   };
-
-  const onResize = useCallback((entries, who) => {
-    for (let entry of entries) {
-      [who(entry.contentRect.height)];
-    }
-  }, []);
-
-  useEffect(() => {
-    const resizeObserver1 = new ResizeObserver((entries) =>
-      onResize(entries, setMainHeight)
-    );
-    resizeObserver1.observe(ref.current);
-    return () => {
-      resizeObserver1.disconnect();
-    };
-  }, [onResize]);
-
-  useEffect(() => {
-    console.log(mainHeight);
-  }, [mainHeight]);
 
   useEffect(() => {
     // FooterController.start({
     //   transition: { delay: `${currentSection === 1 ? 1 : 1}` },
     // });
-    isFooterVisible && FooterController.start("animate");
-    !isFooterVisible && FooterController.start("leave");
-  }, [isFooterVisible]);
+    currentSection === 4 && FooterController.start("animate");
+    currentSection !== 4 && FooterController.start("leave");
+  }, [currentSection]);
   return (
     <>
-      {/* <Image src="/convert/font-carte.png" width="800" height="800" /> */}
       <Section4 />
-      <Box ref={ref} id="main">
+      <Box id="main">
         <Head>
           <title>Lazy Resume</title>
           <meta name="description" content="The Lazy Resume Maker" />
@@ -86,6 +64,7 @@ export default function Home() {
           initial="init"
           animate={FooterController}
           style={{
+            transformOrigin: "top",
             // position: "fixed",
             // transform: "scale(0.8) translateY(-12.5%)",
             height: "100vh",

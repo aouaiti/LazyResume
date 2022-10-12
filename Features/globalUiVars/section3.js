@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { currentSec } from "./currentSection";
+import { sectionIndex } from "./currentSection";
 
 const initialState = {
   rotation: 0,
@@ -15,11 +15,12 @@ const section3 = createSlice({
       //   section3.actions.rotate(20);
     },
   },
+  extraReducers: {
+    [sectionIndex]: (state, action) => {
+      if (action.payload === 3) state.rotation = 0;
+    },
+  },
 });
-
-// store.subscribe(() => {
-//   console.log(store.getState().section3);
-// });
 
 export default section3.reducer;
 export const rota = section3;

@@ -12,7 +12,6 @@ import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { currentPart } from "../../Features/globalUiVars/section2";
 import { rotate } from "../../Features/globalUiVars/section3";
 import { memo } from "react";
-import { makeVisible } from "../../Features/globalUiVars/footer";
 import Image from "next/image";
 import ForumIcon from "@mui/icons-material/Forum";
 
@@ -29,12 +28,13 @@ const SideBar = () => {
   const currentSection2Part = useSelector((state) => state.section2.part);
   const rotation = useSelector((state) => state.section3.rotation);
   const currentSection = useSelector((state) => state.currentSection.Section);
-  const isFooterVisible = useSelector((state) => state.footer.isVisible);
+
   const dispatch = useDispatch();
+
   const eventHandler = async (s, p = 0) => {
-    if (isFooterVisible === true) dispatch(makeVisible(false));
+    if (currentSection === s && currentSection2Part === p) return;
     if (currentSection !== 1 && s === 1) {
-      dispatch(currentPart(-currentSection2Part));
+      // dispatch(currentPart(-currentSection2Part));//todo
       dispatch(sectionIndex(s));
       return;
     }
@@ -51,10 +51,10 @@ const SideBar = () => {
     if (currentSection === 2) dispatch(currentPart(-currentSection2Part + p));
     if (currentSection === 2 && s === 2) return;
     if (currentSection !== 3 && s === 3) {
-      dispatch(currentPart(-currentSection2Part + 3));
+      // dispatch(currentPart(-currentSection2Part + 3));//todo
     }
     if (currentSection === 3) {
-      dispatch(rotate(-rotation));
+      // rotation !== 0 && dispatch(rotate(-rotation));//todo
     }
     if (currentSection === 3 && s === 3) return;
     dispatch(sectionIndex(s));
@@ -131,13 +131,7 @@ const SideBar = () => {
           </IconButton>
           <IconButton
             onClick={() => {
-              if (currentSection === 1) {
-                dispatch(makeVisible(true));
-                setTimeout(() => eventHandler(4), 10);
-                return;
-              }
               eventHandler(4);
-              dispatch(makeVisible(true));
             }}
           >
             <KeyboardDoubleArrowDownOutlinedIcon />

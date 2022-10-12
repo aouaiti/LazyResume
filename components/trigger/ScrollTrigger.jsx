@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { rotate } from "../../Features/globalUiVars/section3";
 import { currentPart } from "../../Features/globalUiVars/section2";
-import { makeVisible } from "../../Features/globalUiVars/footer";
 
 function ScrollTrigger() {
   const [idle, setIdle] = useState(false);
@@ -13,6 +12,9 @@ function ScrollTrigger() {
   const dispatch = useDispatch();
   const section2Part = useSelector((state) => state.section2.part);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const previousSection = useSelector(
+    (state) => state.currentSection.prevSection
+  );
   const section3Part = useSelector((state) => state.section3.rotation);
   const a = 1;
   const sectionMutation = () => {
@@ -28,7 +30,6 @@ function ScrollTrigger() {
     //     200
     //   );
   };
-
   useEffect(() => {
     if (currentSection !== 1 || multiplier !== 1) return;
     let sec1toSec2 = setTimeout(
@@ -41,7 +42,6 @@ function ScrollTrigger() {
   useEffect(() => {
     if (currentSection !== 4 || multiplier !== -1) return;
     let sec1toSec2 = setTimeout(() => {
-      dispatch(makeVisible(false));
       dispatch(sectionIndex(currentSection + multiplier));
     }, 50);
     return () => clearTimeout(sec1toSec2);
@@ -53,14 +53,13 @@ function ScrollTrigger() {
         top: "0",
         // behavior: "instant",
       });
-      dispatch(rotate(-section3Part));
+      // dispatch(rotate(-section3Part));
       dispatch(sectionIndex(4));
-      dispatch(makeVisible(true));
       return;
     }
     if (currentSection !== 3 || multiplier !== -1 || section3Part !== 0) return;
     let sec3toSec2 = setTimeout(() => {
-      if (section2Part !== 3) dispatch(currentPart(1));
+      // if (section2Part !== 3) dispatch(currentPart(1));[todo]
       dispatch(sectionIndex(currentSection + multiplier));
     }, 600);
     return () => clearTimeout(sec3toSec2);
@@ -72,7 +71,7 @@ function ScrollTrigger() {
       // dispatch(rotate(-section3Part));
       return;
     }
-    dispatch(rotate(-section3Part));
+    // dispatch(rotate(-section3Part));
     const timer = setTimeout(() => setIdle(true), 1000);
     return () => clearTimeout(timer);
   }, [currentSection]);
@@ -82,7 +81,10 @@ function ScrollTrigger() {
     if (multiplier === 1 && section3Part === 4) return;
     if (multiplier === -1 && section3Part === 0) return;
     if (!idle) return;
-    const sec3 = setTimeout(() => dispatch(rotate(multiplier)), 50);
+    const sec3 = setTimeout(
+      () => previousSection !== currentSection && dispatch(rotate(multiplier)),
+      50
+    );
     return () => clearTimeout(sec3);
   }, [multiplier]);
 
@@ -110,12 +112,12 @@ function ScrollTrigger() {
     document.addEventListener("keydown", TypeHandler);
 
     return () => {
-      //   clearTimeout(timer);
       window.removeEventListener("mousewheel", MouseWheelHandler);
       window.removeEventListener("DOMMouseScroll", MouseWheelHandler);
       window.removeEventListener("keydown", TypeHandler);
     };
   }, []);
+
   const touchStartHandler = (e) => {
     start = e.changedTouches[0];
   };
@@ -124,11 +126,9 @@ function ScrollTrigger() {
     if (end.screenY - start.screenY > 0) {
       setMultiplier(0);
       setMultiplier(-1);
-      // console.log("scrolling up");
     } else if (end.screenY - start.screenY < 0) {
       setMultiplier(0);
       setMultiplier(1);
-      // console.log("scrolling down");
     }
   };
 
@@ -139,21 +139,13 @@ function ScrollTrigger() {
     var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
 
     if (delta == 1) {
-      //   dispatch(scrollIndex(delta));
       setMultiplier(0);
       setMultiplier(-1);
-
-      // section3Mutation(-1);
-      //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
       return false;
     }
     if (delta == -1) {
       setMultiplier(0);
       setMultiplier(1);
-
-      // section3Mutation(1);
-      //   dispatch(scrollIndex(delta));
-      //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
       return false;
     }
     return false;
@@ -163,15 +155,9 @@ function ScrollTrigger() {
     if (e.key == "ArrowUp") {
       setMultiplier(0);
       setMultiplier(-1);
-      // section3Mutation(-1);
-      //   dispatch(scrollIndex(1));
-      //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
     } else if (e.key == "ArrowDown") {
       setMultiplier(0);
       setMultiplier(1);
-      // section3Mutation(1);
-      //   dispatch(scrollIndex(-1));
-      //   setTimeout(() => dispatch(scrollIndex(0)), 1000);
     }
   };
 

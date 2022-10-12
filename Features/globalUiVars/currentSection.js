@@ -1,14 +1,16 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  prevSection: 0,
   Section: 1,
 };
 
 const currentSection = createSlice({
-  name: "current-section",
+  name: "currentSection",
   initialState,
   reducers: {
     sectionIndex: (state, action) => {
+      state.prevSection = state.Section;
       state.Section = action.payload;
     },
   },
