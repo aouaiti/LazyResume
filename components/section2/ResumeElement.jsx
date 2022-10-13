@@ -8,6 +8,7 @@ const ResumeElement = forwardRef((props, ref) => {
   const selectedResume = useSelector((state) => state.section2.selectedResume);
   const zIndex = props.index === selectedResume.index ? 2 : 1;
   const xPos = props.index === selectedResume.index ? selectedResume.center : 0;
+  const rotateY = props.index === selectedResume.index ? 360 : rotateY;
   const opa = selectedResume?.active
     ? props.index === selectedResume.index
       ? 1
@@ -19,14 +20,18 @@ const ResumeElement = forwardRef((props, ref) => {
       // oapcity: 1,
       y: -600,
       filter: "grayscale(100%)",
+      transformOrigin: "120px",
     },
     show: {
       zIndex,
       y: 0,
+      transformStyle: "preserve-3d",
+      rotateY,
       x: xPos,
       opacity: opa,
       transition: {
         y: { delay: 1.5 },
+        rotateY: { duration: 2 },
       },
     },
   };
