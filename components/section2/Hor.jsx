@@ -19,15 +19,18 @@ import ResizeObserver from "resize-observer-polyfill";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { currentPart } from "../../Features/globalUiVars/section2";
+import { selectResume } from "../../Features/globalUiVars/section2";
 import { sectionIndex } from "../../Features/globalUiVars/currentSection";
 import { Box } from "@mui/material";
 import Trigger from "../trigger/Trigger";
 import ResumeElement from "./ResumeElement";
 
 const cont = {
-  init: {},
+  // init: {
+  //   opacity: 1,
+  // },
   leave: {
-    opacity: 0,
+    // opacity: 0,
     y: 900,
   },
 };
@@ -50,6 +53,8 @@ const Contained = ({ numba }) => {
   /////////////////////////////////////// end redux stuff
   const container = useRef(null);
   const resumeRefs = useRef([]);
+  /////////////////////////////////////// resume click handlers
+
   /////////////////////////////////////// Cursor mutations
 
   //if user is hovering an icon, cursor locks at it
@@ -217,13 +222,31 @@ const Contained = ({ numba }) => {
         {Array.from({ length: numba }).map((_, i) => (
           <ResumeElement
             key={i}
-            ref={(el) => resumeRefs.current.push(el)}
-            onMouseEnter={() => {
+            ref={useCallback((el) => {
+              resumeRefs.current.push(el);
+            }, [])}
+            onClick={() => {
+              dispatchPart(
+                selectResume({
+                  active: true,
+                  index: i,
+                  bodyWidth: window.document
+                    .querySelector("body")
+                    .getBoundingClientRect().width,
+                  resumeWidth: 240,
+                  resumeLeftPosition:
+                    resumeRefs.current[i].getBoundingClientRect().left,
+                })
+              );
+            }}
+            index={i}
+            onMouseEnter={useCallback(() => {
               hoverResume(resumeRefs.current[i], "r1");
-            }}
-            onMouseLeave={() => {
+            }, [])}
+            onMouseLeave={useCallback(() => {
               setHoveringResume(null);
-            }}
+            }, [])}
+            // style={{ position: "absolute", top: "10%" }}
           />
         ))}
         <Trigger

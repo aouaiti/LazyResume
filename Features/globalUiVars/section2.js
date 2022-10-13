@@ -11,6 +11,15 @@ const backgrounds = [
 const initialState = {
   part: 0,
   backgroundPalette: backgrounds[0],
+  selectedResume: {
+    active: false,
+    index: undefined,
+    bodyWidth: undefined,
+    resumeWidth: undefined,
+    resumeLeftPosition: undefined,
+    centerFormula: "(bodyWidth - resumeWidth) / 2 - resumeLeftPosition",
+    center: undefined,
+  },
 };
 
 const section2 = createSlice({
@@ -23,6 +32,14 @@ const section2 = createSlice({
       if (state.part === 3) state.part = 2;
       state.backgroundPalette = backgrounds[state.part] || "none";
     },
+    selectResume: (state, action) => {
+      state.selectedResume = { ...state.selectedResume, ...action.payload };
+      if (state.selectedResume.active)
+        state.selectedResume.center =
+          (state.selectedResume.bodyWidth - state.selectedResume.resumeWidth) /
+            2 -
+          state.selectedResume.resumeLeftPosition;
+    },
   },
   extraReducers: {
     [sectionIndex]: (state, action) => {
@@ -33,4 +50,4 @@ const section2 = createSlice({
 });
 
 export default section2.reducer;
-export const { currentPart, bgPalette } = section2.actions;
+export const { currentPart, bgPalette, selectResume } = section2.actions;

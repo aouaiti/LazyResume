@@ -28,6 +28,7 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  cursor: url("../public/cursor.png") 32 32, auto;
 }
 /* Hide scrollbar for IE, Edge add Firefox */
 .scrollbar-hidden {
