@@ -1,11 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { sectionIndex } from "./currentSection";
-import { currentSection } from "./currentSection";
+import { toggleMode } from "./theme";
 
 const backgrounds = [
-  ["#006eb8", "#4795d1"],
-  ["#a61322", "#d33f34"],
-  ["#00986f", "#6cd96a"],
+  ["hsl(204deg 100% 31%)", "hsl(206deg 60% 50%)"],
+  ["hsl(354deg 79% 31%)", "hsl(4deg 64% 47%)"],
+  ["hsl(164deg 100% 25%)", "hsl(119deg 59% 58%)"],
+];
+const dayPalette = [
+  ["hsl(204deg 100% 36%)", "hsl(206deg 60% 55%)"],
+  ["hsl(354deg 79% 36%)", "hsl(4deg 64% 52%)"],
+  ["hsl(164deg 100% 30%)", "hsl(119deg 59% 63%)"],
+];
+const nightPalette = [
+  ["hsl(204deg 100% 31%)", "hsl(206deg 60% 50%)"],
+  ["hsl(354deg 79% 31%)", "hsl(4deg 64% 47%)"],
+  ["hsl(164deg 100% 25%)", "hsl(119deg 59% 58%)"],
 ];
 
 const initialState = {
@@ -43,8 +53,24 @@ const section2 = createSlice({
   },
   extraReducers: {
     [sectionIndex]: (state, action) => {
-      if (action.payload >= 3) state.part = 2;
-      if (action.payload === 1) state.part = 0;
+      if (action.payload >= 3) {
+        state.part = 2;
+        state.backgroundPalette = backgrounds[2];
+      }
+      if (action.payload === 1) {
+        state.part = 0;
+        state.backgroundPalette = backgrounds[0];
+      }
+    },
+    [toggleMode]: (state, action) => {
+      if (action.payload === "light") {
+        backgrounds = dayPalette;
+        state.backgroundPalette = backgrounds[state.part];
+      }
+      if (action.payload === "dark") {
+        backgrounds = nightPalette;
+        state.backgroundPalette = backgrounds[state.part];
+      }
     },
   },
 });

@@ -27,7 +27,7 @@ export default function Moon({ isDay, setIsDay }) {
   const dispatch = useDispatch();
   return (
     <motion.div
-      onClick={() => dispatch(toggleMode())}
+      onClick={() => dispatch(toggleMode("light"))}
       variants={animation}
       initial="night"
       animate={`${themeMode === "light" ? "day" : "night"}`}

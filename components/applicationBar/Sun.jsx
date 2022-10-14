@@ -25,7 +25,7 @@ export default function Sun({ isDay, setIsDay }) {
   const dispatch = useDispatch();
   return (
     <motion.div
-      onClick={() => dispatch(toggleMode())}
+      onClick={() => dispatch(toggleMode("dark"))}
       className={styles.sun}
       variants={animation}
       initial="night"
