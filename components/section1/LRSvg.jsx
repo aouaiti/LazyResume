@@ -1,6 +1,6 @@
 import styles from "./Letter.module.scss";
-import { memo } from "react";
-import { motion } from "framer-motion";
+import { memo, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 
@@ -18,8 +18,31 @@ const animatePath = {
   },
 };
 
+const cardMode = {
+  hidden: {
+    x: 0,
+  },
+  show: {
+    x: "30vw",
+    transition: {
+      duration: 1,
+    },
+  },
+  hide: {
+    x: 0,
+  },
+};
+
 const SVGComponent = (props) => {
   const themeMode = useSelector((state) => state.theme.mode);
+  const selectedResume = useSelector((state) => state.section2.selectedResume);
+  const animate = useAnimation();
+
+  useEffect(() => {
+    if (selectedResume.active) animate.start("show");
+    if (!selectedResume.active) animate.start("hide");
+  }, [selectedResume.active]);
+
   const L = (props) => {
     return (
       <svg
@@ -88,6 +111,8 @@ const SVGComponent = (props) => {
   return (
     <Box
       component={motion.div}
+      variants={cardMode}
+      animate={animate}
       style={{ position: "fixed", width: "100vw", height: "100vh" }}
       {...props}
     >

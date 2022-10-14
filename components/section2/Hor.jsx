@@ -49,6 +49,7 @@ const Contained = ({ numba }) => {
   /////////////////////////////////////// redux stuff
   const section2part = useSelector((state) => state.section2.part);
   const sectionNumber = useSelector((state) => state.currentSection.Section);
+  const selectedResume = useSelector((state) => state.section2.selectedResume);
   const dispatchPart = useDispatch();
   /////////////////////////////////////// end redux stuff
   const container = useRef(null);
@@ -85,6 +86,10 @@ const Contained = ({ numba }) => {
       y: top - topContainer + 24,
     });
   }, []);
+  // useEffect(() => {
+  //   if (!selectedResume.active) setHoveringResume(null);
+  //   console.log(selectedResume.active);
+  // }, [selectedResume.active]);
   /////////////////////////////////// Triggers to sections
   const trigger = useRef(null);
   const triggerInit = useRef(null);
@@ -179,6 +184,7 @@ const Contained = ({ numba }) => {
   return (
     <>
       <Box
+        id="#customBG"
         component={motion.div}
         ref={container}
         variants={cont}
@@ -222,9 +228,9 @@ const Contained = ({ numba }) => {
         {Array.from({ length: numba }).map((_, i) => (
           <ResumeElement
             key={i}
-            ref={useCallback((el) => {
+            ref={(el) => {
               resumeRefs.current.push(el);
-            }, [])}
+            }}
             onClick={() => {
               dispatchPart(
                 selectResume({
@@ -240,12 +246,12 @@ const Contained = ({ numba }) => {
               );
             }}
             index={i}
-            onMouseEnter={useCallback(() => {
+            onMouseEnter={() => {
               hoverResume(resumeRefs.current[i], "r1");
-            }, [])}
-            onMouseLeave={useCallback(() => {
+            }}
+            onMouseLeave={() => {
               setHoveringResume(null);
-            }, [])}
+            }}
             // style={{ position: "absolute", top: "10%" }}
           />
         ))}
@@ -257,6 +263,7 @@ const Contained = ({ numba }) => {
         />
       </Box>
       <Box
+        id="ghost"
         ref={ghost}
         style={{
           position: "absolute",

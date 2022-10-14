@@ -39,26 +39,67 @@ const animation = {
 
 const Back = ({ trigger, numba, msg }) => {
   const section2part = useSelector((state) => state.section2.part);
+  const selectedResume = useSelector((state) => state.section2.selectedResume);
   const BGColor = useSelector((state) => state.section2.backgroundPalette);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const lowerBackControls = useAnimation();
   const higherBackControls = useAnimation();
   const lowerRef = useRef(null);
 
+  function preventScroll(e) {
+    e.preventDefault(false);
+    e.stopPropagation(false);
+    return false;
+  }
+  function allowScroll(e) {
+    e.allowDefault = true;
+    e.cancelBubble = true;
+    return true;
+  }
+
+  useEffect(() => {
+    if (selectedResume.active)
+      document
+        .querySelector("#section-2")
+        .addEventListener("wheel", preventScroll, { passive: false });
+    if (!selectedResume.active)
+      document
+        .querySelector("#section-2")
+        .addEventListener("wheel", allowScroll, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("wheel", allowScroll);
+    };
+  }, [selectedResume.active]);
+
   useEffect(() => {
     if (section2part === trigger) {
       (async () => {
         await lowerBackControls.start("anim4");
-        await lowerBackControls.start("anim2");
+        // await lowerBackControls.start("anim2");
         await lowerBackControls.start("anim3");
       })();
       (async () => {
         await higherBackControls.start("anim1");
-        await higherBackControls.start("anim3");
+        // await higherBackControls.start("anim3");
         await higherBackControls.start("anim2");
       })();
     }
   }, [section2part]);
+
+  useEffect(() => {
+    if (selectedResume.active) {
+      higherBackControls.start("anim1");
+    }
+    if (!selectedResume.active) {
+      (async () => {
+        await higherBackControls.start("anim1");
+        // await higherBackControls.start("anim3");
+        await higherBackControls.start("anim2");
+      })();
+    }
+  }, [selectedResume]);
 
   return (
     <AnimatePresence exitBeforeEnter={true}>

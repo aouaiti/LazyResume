@@ -64,11 +64,11 @@ function Section1() {
               "Constructor de currículum",
             ],
             autoStart: true,
-            loop: true,
+            loop: false,
           }}
         />
       </Typography>
-      <Typography
+      {/* <Typography
         variant="h2"
         sx={{
           color: "white",
@@ -83,7 +83,7 @@ function Section1() {
         }}
       >
         LAZY RESUME
-      </Typography>
+      </Typography> */}
       <Box
         component={motion.div}
         style={{
