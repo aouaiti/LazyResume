@@ -1,8 +1,10 @@
 import Back from "./Back";
 import { memo } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Box } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import ScrollBlocker from "../trigger/ScrollBlocker";
+import ButtonsAndActions from "./ButtonsAndActions";
 
 const animate = {
   exit: {
@@ -29,9 +31,11 @@ function Section2() {
           id="section-2"
           style={{ margin: "0", textAlign: "center" }}
         >
+          <ScrollBlocker />
           <Back key={0} trigger={0} numba={7} msg={"english resume"} />
           <Back key={1} trigger={1} numba={10} msg={"french resume"} />
           <Back key={2} trigger={2} numba={15} msg={"canadian resume"} />
+          <ButtonsAndActions />
         </Box>
       )}
     </AnimatePresence>

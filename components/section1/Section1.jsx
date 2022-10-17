@@ -31,6 +31,7 @@ const animateDI = {
 
 function Section1() {
   const themeMode = useSelector((state) => state.theme.mode);
+  const selectedResume = useSelector((state) => state.section2.selectedResume);
   const section1Ref = useRef(null);
   const section1Trigger = useRef();
   const isInView = useInView(section1Trigger, {
@@ -86,10 +87,11 @@ function Section1() {
       </Typography> */}
       <Box
         component={motion.div}
-        style={{
+        sx={{
           position: "absolute",
           width: "100%",
           height: "100%",
+          filter: `${selectedResume.active ? "grayscale(0.8)" : "none"}`,
         }}
       >
         <Image
@@ -109,6 +111,7 @@ function Section1() {
           position: "absolute",
           width: "100%",
           height: "100%",
+          filter: `${selectedResume.active ? "brightness(0.4)" : "none"}`,
         }}
         variants={animateDI}
         initial="initial"

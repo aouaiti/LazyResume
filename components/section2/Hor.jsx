@@ -154,7 +154,7 @@ const Contained = ({ numba }) => {
   const tgang = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
   const scaleProgress = useSpring(tgang, {
     stiffness: 100,
-    damping: 30,
+    // damping: 30,
     restDelta: 0.001,
   });
   //////////////////////////////////////////////////progress bar
@@ -202,6 +202,7 @@ const Contained = ({ numba }) => {
           height: "100vh",
           padding: "0 2.3rem",
           x: spring,
+          // x: transform,
         }}
       >
         <Trigger
@@ -268,6 +269,7 @@ const Contained = ({ numba }) => {
         style={{
           position: "absolute",
           width: "10vw",
+          // background: "red",
           height: scrollWidth,
         }}
       ></Box>

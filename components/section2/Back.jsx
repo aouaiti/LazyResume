@@ -57,21 +57,21 @@ const Back = ({ trigger, numba, msg }) => {
     return true;
   }
 
-  useEffect(() => {
-    if (selectedResume.active)
-      document
-        .querySelector("#section-2")
-        .addEventListener("wheel", preventScroll, { passive: false });
-    if (!selectedResume.active)
-      document
-        .querySelector("#section-2")
-        .addEventListener("wheel", allowScroll, { passive: false });
+  // useEffect(() => {
+  //   if (selectedResume.active)
+  //     document
+  //       .querySelector("#section-2")
+  //       .addEventListener("wheel", preventScroll, { passive: false });
+  //   if (!selectedResume.active)
+  //     document
+  //       .querySelector("#section-2")
+  //       .addEventListener("wheel", allowScroll, { passive: false });
 
-    return () => {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("wheel", allowScroll);
-    };
-  }, [selectedResume.active]);
+  //   return () => {
+  //     window.removeEventListener("wheel", preventScroll);
+  //     window.removeEventListener("wheel", allowScroll);
+  //   };
+  // }, [selectedResume.active]);
 
   useEffect(() => {
     if (section2part === trigger) {

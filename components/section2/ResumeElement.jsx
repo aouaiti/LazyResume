@@ -106,8 +106,8 @@ const ResumeElement = forwardRef((props, ref) => {
           height="340"
         />
 
-        <p
-          style={{ cursor: "pointer" }}
+        {/* <p
+          style={{ position: "absolute", cursor: "pointer", zIndex: "9999" }}
           onClick={(e) => {
             e.preventDefault;
             e.stopPropagation();
@@ -123,7 +123,7 @@ const ResumeElement = forwardRef((props, ref) => {
           }}
         >
           close this
-        </p>
+        </p> */}
         <AnimatePresence>
           {showCard && (
             <Box
