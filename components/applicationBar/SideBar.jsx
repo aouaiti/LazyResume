@@ -11,6 +11,7 @@ import { currentPart } from "../../Features/globalUiVars/section2";
 import { memo } from "react";
 import Image from "next/image";
 import ForumIcon from "@mui/icons-material/Forum";
+import { selectResume } from "../../Features/globalUiVars/section2";
 
 const Side = styled(Paper)(({ theme }) => ({
   background: `${
@@ -28,6 +29,15 @@ const SideBar = () => {
   const dispatch = useDispatch();
 
   const eventHandler = async (s, p = 0) => {
+    // dispatch(
+    //   selectResume({
+    //     active: false,
+    //     index: undefined,
+    //     bodyWidth: undefined,
+    //     resumeWidth: undefined,
+    //     resumeLeftPosition: undefined,
+    //   })
+    // );
     if (currentSection === s && currentSection2Part === p) return;
     if ((currentSection !== 2 || currentSection === 1) && s === 2) {
       dispatch(sectionIndex(s));

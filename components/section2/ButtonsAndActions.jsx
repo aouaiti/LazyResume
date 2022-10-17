@@ -27,13 +27,14 @@ const animation = {
 export default function ButtonsAndActions() {
   const dispatch = useDispatch();
   const selectedResume = useSelector((state) => state.section2.selectedResume);
+  const preventScroll = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  };
   useEffect(() => {
     const abtn = document.querySelector("#actionButtons");
-    abtn.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    });
+    abtn.addEventListener("wheel", preventScroll);
     return () => {
       window.removeEventListener("wheel", preventScroll);
     };

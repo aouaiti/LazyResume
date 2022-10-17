@@ -46,33 +46,6 @@ const Back = ({ trigger, numba, msg }) => {
   const higherBackControls = useAnimation();
   const lowerRef = useRef(null);
 
-  function preventScroll(e) {
-    e.preventDefault(false);
-    e.stopPropagation(false);
-    return false;
-  }
-  function allowScroll(e) {
-    e.allowDefault = true;
-    e.cancelBubble = true;
-    return true;
-  }
-
-  // useEffect(() => {
-  //   if (selectedResume.active)
-  //     document
-  //       .querySelector("#section-2")
-  //       .addEventListener("wheel", preventScroll, { passive: false });
-  //   if (!selectedResume.active)
-  //     document
-  //       .querySelector("#section-2")
-  //       .addEventListener("wheel", allowScroll, { passive: false });
-
-  //   return () => {
-  //     window.removeEventListener("wheel", preventScroll);
-  //     window.removeEventListener("wheel", allowScroll);
-  //   };
-  // }, [selectedResume.active]);
-
   useEffect(() => {
     if (section2part === trigger) {
       (async () => {
@@ -91,15 +64,14 @@ const Back = ({ trigger, numba, msg }) => {
   useEffect(() => {
     if (selectedResume.active) {
       higherBackControls.start("anim1");
+      return;
     }
-    if (!selectedResume.active) {
-      (async () => {
-        await higherBackControls.start("anim1");
-        // await higherBackControls.start("anim3");
-        await higherBackControls.start("anim2");
-      })();
-    }
-  }, [selectedResume]);
+    (async () => {
+      await higherBackControls.start("anim1");
+      // await higherBackControls.start("anim3");
+      await higherBackControls.start("anim2");
+    })();
+  }, [selectedResume.active]);
 
   return (
     <AnimatePresence exitBeforeEnter={true}>

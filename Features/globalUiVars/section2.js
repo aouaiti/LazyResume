@@ -37,9 +37,14 @@ const section2 = createSlice({
   initialState,
   reducers: {
     currentPart: (state, action) => {
-      state.part += action.payload;
       if (state.part === -1) state.part = 0;
       if (state.part === 3) state.part = 2;
+      state.selectedResume = {
+        ...state.selectedResume,
+        active: false,
+        center: undefined,
+      };
+      state.part += action.payload;
       state.backgroundPalette = backgrounds[state.part] || "none";
     },
     selectResume: (state, action) => {
@@ -61,6 +66,11 @@ const section2 = createSlice({
         state.part = 0;
         state.backgroundPalette = backgrounds[0];
       }
+      state.selectedResume = {
+        ...state.selectedResume,
+        active: false,
+        center: undefined,
+      };
     },
     [toggleMode]: (state, action) => {
       if (action.payload === "light") {
