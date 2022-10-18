@@ -29,6 +29,7 @@ const initialState = {
     resumeLeftPosition: undefined,
     centerFormula: "(bodyWidth - resumeWidth) / 2 - resumeLeftPosition",
     center: undefined,
+    close: undefined,
   },
 };
 
@@ -43,6 +44,7 @@ const section2 = createSlice({
         ...state.selectedResume,
         active: false,
         center: undefined,
+        close: "forced",
       };
       state.part += action.payload;
       state.backgroundPalette = backgrounds[state.part] || "none";

@@ -67,6 +67,7 @@ export default function ButtonsAndActions() {
               bodyWidth: undefined,
               resumeWidth: undefined,
               resumeLeftPosition: undefined,
+              close: "byBotton",
             })
           );
         }}

@@ -66,12 +66,13 @@ const Back = ({ trigger, numba, msg }) => {
       higherBackControls.start("anim1");
       return;
     }
-    (async () => {
-      await higherBackControls.start("anim1");
-      // await higherBackControls.start("anim3");
-      await higherBackControls.start("anim2");
-    })();
-  }, [selectedResume.active]);
+    if (selectedResume.close === "byBotton")
+      (async () => {
+        await higherBackControls.start("anim1");
+        // await higherBackControls.start("anim3");
+        await higherBackControls.start("anim2");
+      })();
+  }, [selectedResume.active, selectedResume.close]);
 
   return (
     <AnimatePresence exitBeforeEnter={true}>

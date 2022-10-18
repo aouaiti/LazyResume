@@ -91,6 +91,7 @@ function Section1() {
           position: "absolute",
           width: "100%",
           height: "100%",
+          transition: "1s",
           filter: `${selectedResume.active ? "grayscale(0.8)" : "none"}`,
         }}
       >
@@ -111,6 +112,7 @@ function Section1() {
           position: "absolute",
           width: "100%",
           height: "100%",
+          transition: "1s",
           filter: `${selectedResume.active ? "brightness(0.4)" : "none"}`,
         }}
         variants={animateDI}

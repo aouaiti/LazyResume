@@ -243,6 +243,7 @@ const Contained = ({ numba }) => {
                   resumeWidth: 240,
                   resumeLeftPosition:
                     resumeRefs.current[i].getBoundingClientRect().left,
+                  close: undefined,
                 })
               );
             }}
