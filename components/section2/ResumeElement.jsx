@@ -77,6 +77,7 @@ const ResumeElement = forwardRef((props, ref) => {
     if (selectedResume.active) animate.start("show");
     if (!selectedResume.active) animate.start("hide");
   }, [selectedResume]);
+  console.log("test");
   return (
     <>
       <Box
