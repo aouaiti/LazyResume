@@ -153,9 +153,9 @@ const Contained = ({ numba }) => {
   //////////////////////////////////////////////////progress bar
   const tgang = useTransform(scrollYProgress, [0, 1], [0, 1.1]);
   const scaleProgress = useSpring(tgang, {
-    stiffness: 100,
-    // damping: 30,
-    restDelta: 0.001,
+    damping: 15,
+    mass: 0.27,
+    stiffness: 35,
   });
   //////////////////////////////////////////////////progress bar
   const transform = useTransform(
@@ -163,8 +163,19 @@ const Contained = ({ numba }) => {
     [0, 1],
     [0, -scrollWidth + viewportW]
   );
-  const physics = { damping: 15, mass: 0.27, stiffness: 35 };
+  const physics = {
+    damping: 15,
+    mass: 0.27,
+    stiffness: 35,
+  };
+  //sasuga watashi mouhahaha the moment u select a resume useEffect will capture the spring value
+  //and assigns it to x ; this is implemented the stop transition(due to scrolling and selecting at the same time)
   const spring = useSpring(transform, physics);
+  const [brakes, setBrakes] = useState(null);
+  useEffect(() => {
+    setBrakes(spring.get());
+  }, [selectedResume.active]);
+
   useEffect(() => {
     container && setScrollWidth(container.current.scrollWidth);
   }, [container, scrollWidth]);
@@ -201,7 +212,7 @@ const Contained = ({ numba }) => {
           minWidth: "100vw",
           height: "100vh",
           padding: "0 2.3rem",
-          x: spring,
+          x: selectedResume.active ? brakes : spring,
           // x: transform,
         }}
       >

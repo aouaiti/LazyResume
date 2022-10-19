@@ -150,5 +150,6 @@ const ResumeElement = forwardRef((props, ref) => {
     </>
   );
 });
+
 ResumeElement.displayName = "LazyResume";
 export default ResumeElement;
