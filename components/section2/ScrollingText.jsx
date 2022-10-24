@@ -15,6 +15,7 @@ import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 function ParallaxText({ children, baseVelocity = 100 }) {
+  const quality = useSelector((state) => state.changeQuality.quality);
   const BGColor = useSelector((state) => state.section2.backgroundPalette);
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -31,7 +32,9 @@ function ParallaxText({ children, baseVelocity = 100 }) {
 
   const directionFactor = useRef(1);
   const prevT = useRef(0);
+
   useAnimationFrame((t) => {
+    if (quality !== "high") return;
     if (!prevT.current) prevT.current = t;
     const timeDelta = t - prevT.current;
     let moveBy = directionFactor.current * baseVelocity * (timeDelta / 1000);

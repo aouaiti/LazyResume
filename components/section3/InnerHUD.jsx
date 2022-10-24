@@ -16,7 +16,13 @@ const animate = {
 
 const SVGComponent = ({ scrollProgress, ...props }) => {
   const themeMode = useSelector((state) => state.theme.mode);
-  const ro = useTransform(scrollProgress, [0, 1], [0, -360], { clamp: true });
+  const quality = useSelector((state) => state.changeQuality.quality);
+  const ro = useTransform(
+    scrollProgress,
+    [0, 1],
+    [0, quality === "high" ? -360 : 0],
+    { clamp: true }
+  );
   return (
     <motion.div
       style={{
@@ -35,7 +41,9 @@ const SVGComponent = ({ scrollProgress, ...props }) => {
     >
       <motion.svg
         className={
-          themeMode === "dark" ? styles.hudNightInner : styles.hudDayInner
+          themeMode === "dark" && quality === "high"
+            ? styles.hudNightInner
+            : styles.hudDayInner
         }
         xmlns="http://www.w3.org/2000/svg"
         width={1000}

@@ -9,10 +9,12 @@ import Section4 from "../components/section4/Section4";
 import ScrollTrigger from "../components/trigger/ScrollTrigger";
 import { Box } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { toggleQuality } from "../Features/globalUiVars/quality";
 
 export default function Home() {
+  const dispatch = useDispatch();
   const currentSection = useSelector((state) => state.currentSection.Section);
   const previousSection = useSelector(
     (state) => state.currentSection.prevSection
@@ -67,6 +69,12 @@ export default function Home() {
           <ApplicationBar />
           <Section2 />
           <Section3 />
+          <button
+            onClick={(e) => dispatch(toggleQuality())}
+            style={{ zIndex: "99999", position: "absolute", top: "30%" }}
+          >
+            quality toggle
+          </button>
         </Box>
       </Box>
     </>

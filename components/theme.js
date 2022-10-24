@@ -12,7 +12,7 @@ function ThemeWrapper({ children }) {
     palette: {
       mode: themeMode,
       primary: {
-        light: "#e3f2fd",
+        light: "#0ff",
         dark: "#131313",
         main: "#000",
         contrastText: "#fff",

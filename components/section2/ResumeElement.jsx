@@ -153,4 +153,4 @@ const ResumeElement = forwardRef((props, ref) => {
 });
 
 ResumeElement.displayName = "LazyResume";
-export default ResumeElement;
+export default memo(ResumeElement);

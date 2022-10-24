@@ -23,18 +23,19 @@ const textContainer = {
     },
   },
 };
-const textAnimation = {
-  init: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
 
 const Section4 = () => {
   const themeMode = useSelector((state) => state.theme.mode);
   const currentSection = useSelector((state) => state.currentSection.Section);
+  const quality = useSelector((state) => state.changeQuality.quality);
+  const textAnimation = {
+    init: {
+      opacity: quality === "high" ? 0 : 1,
+    },
+    animate: {
+      opacity: 1,
+    },
+  };
   return (
     <Box
       style={{

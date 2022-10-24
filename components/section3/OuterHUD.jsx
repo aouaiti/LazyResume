@@ -16,9 +16,13 @@ const animate = {
 
 const SVGComponent = ({ scrollProgress, ...props }) => {
   const themeMode = useSelector((state) => state.theme.mode);
-  const ro = useTransform(scrollProgress, [0, 1], [0, 360], {
-    clamp: true,
-  });
+  const quality = useSelector((state) => state.changeQuality.quality);
+  const ro = useTransform(
+    scrollProgress,
+    [0, 1],
+    [0, quality === "high" ? 360 : 0],
+    { clamp: true }
+  );
 
   return (
     <motion.div
@@ -42,7 +46,9 @@ const SVGComponent = ({ scrollProgress, ...props }) => {
         height={1000}
         viewBox="0 0 1000 1000"
         className={
-          themeMode === "dark" ? styles.hudNightOuter : styles.hudDayOuter
+          themeMode === "dark" && quality === "high"
+            ? styles.hudNightOuter
+            : styles.hudDayOuter
         }
         {...props}
       >

@@ -17,6 +17,7 @@ import Clouds from "./Clouds";
 import Stars from "./Stars";
 import Sun from "./Sun";
 import Moon from "./Moon";
+import { useSelector } from "react-redux";
 
 const AppBarE = styled(AppBar)(({ theme }) => ({
   background: `${
@@ -48,6 +49,8 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const quality = useSelector((state) => state.changeQuality.quality);
+
   return (
     <AppBarE
       position="fixed"
@@ -60,8 +63,12 @@ const ResponsiveAppBar = () => {
     >
       <Sun />
       <Moon />
-      <Clouds />
-      <Stars />
+      {quality === "high" && (
+        <>
+          <Clouds />
+          <Stars />
+        </>
+      )}
       <Container
         maxWidth="xl"
         // sx={{ backdropFilter: "blur(1px)" }}

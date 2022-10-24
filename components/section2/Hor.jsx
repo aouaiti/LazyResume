@@ -86,6 +86,9 @@ const Contained = ({ numba }) => {
       y: top - topContainer + 24,
     });
   }, []);
+  useEffect(() => {
+    if (selectedResume.active) setHoveringResume(null);
+  }, [selectedResume.active]);
   // useEffect(() => {
   //   if (!selectedResume.active) setHoveringResume(null);
   //   console.log(selectedResume.active);

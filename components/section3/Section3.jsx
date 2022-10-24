@@ -21,6 +21,7 @@ const animateImage = {
 };
 
 const Section3 = () => {
+  // const quality = useSelector((state) => state.changeQuality.quality);
   const themeMode = useSelector((state) => state.theme.mode);
   const currentSection = useSelector((state) => state.currentSection.Section);
   const { scrollYProgress } = useScroll();
