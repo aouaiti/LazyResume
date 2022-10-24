@@ -12,6 +12,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { toggleQuality } from "../Features/globalUiVars/quality";
+import IconButton from "@mui/material/IconButton";
+import AppShortcutIcon from "@mui/icons-material/AppShortcut";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -69,13 +71,26 @@ export default function Home() {
           <ApplicationBar />
           <Section2 />
           <Section3 />
-          <button
+          {/* <button
             onClick={(e) => dispatch(toggleQuality())}
             style={{ zIndex: "99999", position: "absolute", top: "30%" }}
           >
             quality toggle
-          </button>
+          </button> */}
         </Box>
+        <IconButton
+          sx={{
+            position: "fixed",
+            zIndex: "999999",
+            right: "2%",
+            bottom: "2%",
+            opacity: currentSection === 4 ? "0" : "1",
+          }}
+          aria-label="quality"
+          onClick={(e) => dispatch(toggleQuality())}
+        >
+          <AppShortcutIcon sx={{ fontSize: "3rem" }} />
+        </IconButton>
       </Box>
     </>
   );
