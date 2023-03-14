@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  quality: "low",
+  quality: "high",
 };
 
 const changeQuality = createSlice({
