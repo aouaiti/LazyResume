@@ -1,6 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Live: [https://vercel.com/aouaiti/lazy-resume-3t1x](https://vercel.com/aouaiti/lazy-resume-3t1x)
+Testing out high-end animation concepts combined with both event observers and advanced state managment.
+
+demo: [https://vercel.com/aouaiti/lazy-resume-3t1x](https://vercel.com/aouaiti/lazy-resume-3t1x)
+
+Note: this is a front-end implementation only with the goal of only testing.
 
 ## Getting Started
 
