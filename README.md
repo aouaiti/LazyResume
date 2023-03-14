@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Testing out high-end animation concepts combined with both event observers and advanced state managment.
 
-demo: [https://vercel.com/aouaiti/lazy-resume-3t1x](https://vercel.com/aouaiti/lazy-resume-3t1x)
+demo: [https://lazy-resume-3t1x.vercel.app/](https://lazy-resume-3t1x.vercel.app/)
 
 Note: this is a front-end implementation only with the goal of only testing.
 
